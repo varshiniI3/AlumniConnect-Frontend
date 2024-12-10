@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Cookies from 'js-cookie'
 import './home.css'
 import { FaSquareXTwitter, FaSquareInstagram, FaLinkedin } from "react-icons/fa6";
@@ -6,7 +6,24 @@ import { FaSquareXTwitter, FaSquareInstagram, FaLinkedin } from "react-icons/fa6
 
 function Home() {
 
-  const [alumni, setAlumni] = useState([
+//   const [alumni, setAlumni] = useState([
+//     {sno : "1", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'},
+//     {sno : "2", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'},
+//     {sno : "3", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}, 
+//     {sno : "4", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}, 
+//     {sno : "5", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}, 
+//     {sno : "6", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}, 
+//     {sno : "7", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}, 
+//     {sno : "8", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}
+//   ])    
+//   const [eventPics, setEventPics] = useState([
+//     {imgUrl : 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', name : 'sample Event', type : 'event type'},
+//     {imgUrl : 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', name : 'sample Event', type : 'event type'},
+//     {imgUrl : 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', name : 'sample Event', type : 'event type'},
+//     {imgUrl : 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', name : 'sample Event', type : 'event type'},
+//     {imgUrl : 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', name : 'sample Event', type : 'event type'}
+//   ])
+  const alumni = [
     {sno : "1", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'},
     {sno : "2", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'},
     {sno : "3", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}, 
@@ -15,14 +32,14 @@ function Home() {
     {sno : "6", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}, 
     {sno : "7", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}, 
     {sno : "8", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}
-  ])    
-  const [eventPics, setEventPics] = useState([
+  ]
+  const eventPics = [
     {imgUrl : 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', name : 'sample Event', type : 'event type'},
     {imgUrl : 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', name : 'sample Event', type : 'event type'},
     {imgUrl : 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', name : 'sample Event', type : 'event type'},
     {imgUrl : 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', name : 'sample Event', type : 'event type'},
     {imgUrl : 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', name : 'sample Event', type : 'event type'}
-  ])
+  ]
   const email = Cookies.get('email') || null
 
   return (
@@ -66,7 +83,7 @@ function Home() {
             )
           }
         </div>
-        <a href="#" className='text-2xl justify-center items-center font-bold absolute right-5 top-1/3 p-2 rounded-md' style={{background: '#c1121f', color : '#fdf0d5'}}>View More Events</a>
+        <a href="/" className='text-2xl justify-center items-center font-bold absolute right-5 top-1/3 p-2 rounded-md' style={{background: '#c1121f', color : '#fdf0d5'}}>View More Events</a>
       </div>
       <div className="flex gap-9 p-10 text-white" style={{background : '#003049'}}>
         <img id='campusImg' src="https://images.collegedunia.com/public/college_data/images/campusimage/1479984572Untitled.jpg" alt="campus" />
@@ -80,12 +97,12 @@ function Home() {
         </span>
       </div>
       <div className="footer flex justify-around text-white" style={{background : '#003049'}}>
-        <a href="#">Privacy policy</a>
-        <a href="#">Terms & Conditions</a>
-        <a href="#"><FaSquareXTwitter className='text-4xl'/></a>
-        <a href="#"><FaSquareInstagram className='text-4xl'/></a>
-        <a href="#"><FaLinkedin className='text-4xl'/></a>
-        <a href="#">Feedback</a>
+        <a href="/">Privacy policy</a>
+        <a href="/">Terms & Conditions</a>
+        <a href="/"><FaSquareXTwitter className='text-4xl'/></a>
+        <a href="/"><FaSquareInstagram className='text-4xl'/></a>
+        <a href="/"><FaLinkedin className='text-4xl'/></a>
+        <a href="/">Feedback</a>
       </div>
     </div>
   )
