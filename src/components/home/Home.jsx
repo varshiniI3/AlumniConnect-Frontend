@@ -51,13 +51,13 @@ function Home() {
             <a href="/" className='nav-link' data-content = 'Job Opportunities' >Job Opportunities</a>
             <a href="/" className='nav-link' data-content = 'Skill Development' >Skill Development</a>
             <a href="/" className='nav-link' data-content = 'Connect' >Connect</a>
-            {email === null ? <a href="/" className='nav-link' data-content = 'Login' >Login</a> 
+            {email === null ? <a href="/login" className='nav-link' data-content = 'Login' >Login</a> 
                             : <a href="/" className='nav-link' data-content = 'Profile'>Profile</a>}
-        </div><br /><br />
+        </div><br /><br /><br />
         <div className="mt-5 text-white">
-            <center><h1>Alumni Connect</h1></center>
+            <center><h1 className = 'text-5xl font-bold'>Alumni Connect</h1></center>
             <center><pre>Reconnect   Inspire   Empower</pre></center>
-        </div>
+        </div><br /><br />
         <div className="userCardHolder">
             {
             alumni.map((user, key) => 
@@ -66,13 +66,13 @@ function Home() {
                 <b>{user.name}</b>
                 <p>{user.designation}</p>
                 <p>{user.location}</p>
-                <center><button>Connect</button></center>
+                <center><button>View Profile</button></center>
               </div>
             )
         }
         </div>
       </div>
-      <h1 className='pt-1 pb-1 text-center' style={{background : '#fdf0d5', color: '#c1121f'}}>Events</h1>
+      <h1 className='pt-1 pb-1 text-center text-5xl font-bold' style={{background : '#fdf0d5', color: '#c1121f'}}>Events</h1>
       <div className="flex justify-between relative" style={{background: '#fdf0d5'}}>
         <div className="eventCardHolder">
           {
@@ -88,7 +88,7 @@ function Home() {
       <div className="flex gap-9 p-10 text-white" style={{background : '#003049'}}>
         <img id='campusImg' src="https://images.collegedunia.com/public/college_data/images/campusimage/1479984572Untitled.jpg" alt="campus" />
         <span>
-            <center><h1>About Instution</h1></center>
+            <center><h1 className = 'text-5xl font-bold'>About Instution</h1></center>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, magni. Unde reprehenderit quia adipisci laboriosam, fuga quidem magnam libero provident harum odit quibusdam obcaecati dolorum voluptatem, sit aliquid nisi. Deleniti!
             Doloribus tenetur impedit quo eveniet ipsam ipsum perferendis error iure quaerat perspiciatis quasi nesciunt, numquam odit? Non officia ab omnis natus deleniti vero, dolore obcaecati laboriosam distinctio nam, excepturi harum.
             Dicta error, illo enim ab vero laborum. Nobis fugit dolorem earum voluptas obcaecati perspiciatis maiores? Quasi, asperiores. Explicabo, quidem cum eum labore illum incidunt inventore magnam eaque qui ipsam aperiam!
@@ -97,12 +97,12 @@ function Home() {
         </span>
       </div>
       <div className="footer flex justify-around text-white" style={{background : '#003049'}}>
-        <a href="/">Privacy policy</a>
-        <a href="/">Terms & Conditions</a>
-        <a href="/"><FaSquareXTwitter className='text-4xl'/></a>
-        <a href="/"><FaSquareInstagram className='text-4xl'/></a>
-        <a href="/"><FaLinkedin className='text-4xl'/></a>
-        <a href="/">Feedback</a>
+        <a href="/" className='a' >Privacy policy</a>
+        <a href="/" className='a' >Terms & Conditions</a>
+        <a href="/" ><FaSquareXTwitter className='text-4xl hover:-translate-y-2'/></a>
+        <a href="/" ><FaSquareInstagram className='text-4xl hover:-translate-y-2'/></a>
+        <a href="/" ><FaLinkedin className='text-4xl hover:-translate-y-2'/></a>
+        <a href="/" className='a' >Feedback</a>
       </div>
     </div>
   )
