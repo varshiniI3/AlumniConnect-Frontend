@@ -1,7 +1,7 @@
 import React from 'react'
-import Cookies from 'js-cookie'
 import './home.css'
 import { FaSquareXTwitter, FaSquareInstagram, FaLinkedin } from "react-icons/fa6";
+import Navbar from './Navbar';
 
 
 function Home() {
@@ -40,20 +40,11 @@ function Home() {
     {imgUrl : 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', name : 'sample Event', type : 'event type'},
     {imgUrl : 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', name : 'sample Event', type : 'event type'}
   ]
-  const email = Cookies.get('email') || null
 
   return (
     <div className='home'>
       <div className="header">
-        <div className="flex gap-20 justify-around  text-white text-2xl font-bold fixed top-0 z-10 overflow-hidden" style={{background : '#003049', width: '100%'}}>
-            <img src="" alt="logo" />
-            <a href="/" className='nav-link' data-content = 'Events' >Events</a>
-            <a href="/" className='nav-link' data-content = 'Job Opportunities' >Job Opportunities</a>
-            <a href="/" className='nav-link' data-content = 'Skill Development' >Skill Development</a>
-            <a href="/" className='nav-link' data-content = 'Connect' >Connect</a>
-            {email === null ? <a href="/login" className='nav-link' data-content = 'Login' >Login</a> 
-                            : <a href="/" className='nav-link' data-content = 'Profile'>Profile</a>}
-        </div><br /><br /><br />
+        <Navbar/><br />
         <div className="mt-5 text-white">
             <center><h1 className = 'text-5xl font-bold'>Alumni Connect</h1></center>
             <center><pre>Reconnect   Inspire   Empower</pre></center>
@@ -62,11 +53,11 @@ function Home() {
             {
             alumni.map((user, key) => 
               <div key={key} className='userCard'>
-                <center><img src={user.imageURL} alt="user" /></center>
+                <center><img src={user.imageURL} alt="user" className='rounded-full' /></center>
                 <b>{user.name}</b>
                 <p>{user.designation}</p>
                 <p>{user.location}</p>
-                <center><button>View Profile</button></center>
+                <center><button className='p-2 rounded-lg mt-2 hover:bg-red-700 text-white bg-blue-950 duration-200'>View Profile</button></center>
               </div>
             )
         }
@@ -83,7 +74,7 @@ function Home() {
             )
           }
         </div>
-        <a href="/" className='text-2xl justify-center items-center font-bold absolute right-5 top-1/3 p-2 rounded-md' style={{background: '#c1121f', color : '#fdf0d5'}}>View More Events</a>
+        <a href="/" className='text-2xl justify-center items-center font-bold absolute right-5 top-1/3 p-2 rounded-md hover:bg-white hover:text-red-600 bg-red-700 text-white' id='viewMore'>View More Events</a>
       </div>
       <div className="flex gap-9 p-10 text-white" style={{background : '#003049'}}>
         <img id='campusImg' src="https://images.collegedunia.com/public/college_data/images/campusimage/1479984572Untitled.jpg" alt="campus" />

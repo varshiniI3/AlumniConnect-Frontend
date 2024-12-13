@@ -1,0 +1,37 @@
+.profile .userCard{
+    box-shadow: 0 0 10px black, 0 0 20px black;
+    height: fit-content;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.profile>div>div>*, .profile>div>span{
+    box-shadow: 0 0 10px black, 0 0 20px black;
+}
+
+.profile hr{
+    height: 2px;
+    background: black;
+    color: black;
+    width: 100%;
+}
+
+.profile #profileContent{
+    height: calc(100vh - 3.5rem);
+    overflow-y: scroll;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+}
+
+.profile .badgeHolder{
+    display: flex;
+    width: 100%;
+    overflow-x: scroll;
+    &>img{
+        width: 8rem;
+    }
+    &::-webkit-scrollbar{
+        display: none;
+    }
+}

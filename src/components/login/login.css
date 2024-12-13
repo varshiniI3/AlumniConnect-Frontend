@@ -14,12 +14,12 @@
     border-radius: 20px;
     box-shadow: 0 0 10px white, 0 0 20px white;
     color: white;
+    overflow: hidden;
     &::before{
         content: '';
         position: absolute;
-        /* background: radial-gradient(#c1121f, #780000); */
-        background: linear-gradient(to right, transparent, black);
-        border-radius: 20px;
+        background: linear-gradient(to bottom right,#780000,  #c1121f);
+        /* background: linear-gradient(to right, transparent, black); */
         width: 50%;
         height: 100%;
         z-index: 9;
@@ -35,7 +35,6 @@
 }
 
 .login form button{
-    background: grey;
     color: #fdf0d5;
     border-radius: 10px;
     padding: 6px;
@@ -53,7 +52,7 @@
 }
 
 .login h1{
-    @apply text-5xl font-bold
+    @apply text-4xl font-bold
 }
 
 .login #loginFooter{

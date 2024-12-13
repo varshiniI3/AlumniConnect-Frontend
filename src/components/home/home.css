@@ -142,3 +142,10 @@
         transform: scale(1);
     }
 }
+
+.home #viewMore{
+    transition: .2s ease-in-out;
+    &:hover{
+        border: 1px solid red;
+    }
+}
