@@ -1,5 +1,12 @@
+.profile{
+    height: fit-content;
+    max-height: 100vh;
+    width: 100vw;
+    background: url(../../assets/headBack.jpg) no-repeat;
+    background-size: cover;
+}
+
 .profile .userCard{
-    box-shadow: 0 0 10px black, 0 0 20px black;
     height: fit-content;
     padding: 15px;
     border-radius: 15px;
@@ -7,6 +14,8 @@
 
 .profile>div>div>*, .profile>div>span{
     box-shadow: 0 0 10px black, 0 0 20px black;
+    backdrop-filter: blur(100px);
+    background: #aaaaaa;
 }
 
 .profile hr{
@@ -17,7 +26,7 @@
 }
 
 .profile #profileContent{
-    height: calc(100vh - 3.5rem);
+    height: calc(100vh - 3rem);
     overflow-y: scroll;
     &::-webkit-scrollbar{
         display: none;
@@ -34,4 +43,22 @@
     &::-webkit-scrollbar{
         display: none;
     }
+}
+
+.profile .eventCountHolder{
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: 300;
+    font-size: xx-large;
+    border: 5px solid black;
+    margin: 10px;
+}
+
+.profile input{
+    padding-left: 10px;
 }

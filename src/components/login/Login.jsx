@@ -11,13 +11,20 @@ function Login() {
   const[pass, setPass] = useState('')
   const[email, setEmail] = useState('')
   const[showPass, setShowPass] = useState(true)
+  const [remember, setRemember] = useState(false)
   const handleLogin = async (e) => {
     e.preventDefault()
     try {
       const result = await axios.put(`${process.env.REACT_APP_BASE_URL}/user/login`, {email, pass})
       if(result.data.message === 'Successfull'){
-        Cookies.set('email', email, {expires: 7})
-        Cookies.set('role', result.data.role, {expires: 7})
+        if(remember){
+          Cookies.set('email', email, {expires: 1})
+          Cookies.set('role', result.data.role, {expires: 1})
+        }
+        else{
+          Cookies.set('email', email, {expires: 7})
+          Cookies.set('role', result.data.role, {expires: 7})
+        }
         navigate('/')
       }
       alert(result.data.message)
@@ -44,7 +51,7 @@ function Login() {
           </span>
           <center><button type="submit" className={pass !=='' && email !== '' ? 'mr-4 bg-sky-600' :'mr-4 bg-gray-600 cursor-not-allowed'} disabled={pass === '' || email === ''}>Login</button><br /></center>
           <span className='text-xl' id='loginFooter'>
-            <input type="checkbox" name="" id="remMe" className='scale-150' /><label htmlFor="remMe">Remember me</label>
+            <input type="checkbox" name="" id="remMe" className='scale-150' onChange={() => {setRemember(!remember)}}/><label htmlFor="remMe">Remember me</label>
             &nbsp;&nbsp;&nbsp;&nbsp;<a href="/">Forgot password</a>
           </span>
         </form>

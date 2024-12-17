@@ -1,10 +1,13 @@
 .login{
     height: 100vh;
-    background: url(../../assets/headBack.jpg);
+    width: 100vw;
+    background: url(../../assets/headBack.jpg) no-repeat;
+    position: fixed;
+    background-size: cover;
+
 }
 
 .login form{
-    /* background: linear-gradient(#003049, #669bbc ); */
     padding: 20px;
 }
 

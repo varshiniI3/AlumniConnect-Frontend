@@ -12,7 +12,7 @@ function Profile() {
   const cookieEmail = Cookies.get('email')
   const [userProf, setUSerProf] = useState({
     name: 'Username', imageUrl: 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460', 
-    email: 'email@example.com', role: 'Student', regId: '21501A05XY'
+    email: 'email@example.com', role: 'Alumni', regId: '21501A05XY'
   })
 
   const handleUserUpdateSubmit = async (e) => {
@@ -23,9 +23,9 @@ function Profile() {
     <div className='profile'>
       <Navbar/>
       <div className="flex p-4 pl-20 pr-20 gap-20 relative" id='profileContent'>
-        <span className='p-3 rounded-2xl sticky top-0'>
+        <span className='p-3 rounded-2xl sticky top-0 h-full'>
           <img src={userProf.imageUrl} alt="user" className='w-72 rounded-full' />
-          {userProf.email === cookieEmail && <button>Message</button> }
+          {userProf.email !== cookieEmail && <button>Message</button> }
         </span>
         <div className='flex flex-col w-4/6 gap-10'>
           <div className='userCard w-5/6 text-2xl flex'>
@@ -46,16 +46,46 @@ function Profile() {
             <h1 className='text-2xl mb-5 font-bold'>Badges</h1>
             <span className="badgeHolder gap-5">
               <img src={Bronze} alt="bronzeBadge" />
-              <img src={Silver} alt="bronzeBadge" />
-              <img src={Gold} alt="bronzeBadge" />
+              <img src={Silver} alt="silverBadge" />
+              <img src={Gold} alt="goldBadge" />
             </span>
           </div>
-          <div className="p-5 w-5/6 rounded-2xl">
-            <h1 className="text-2xl font-bold">Events</h1>
-            <div className="flex">
-              <span><p className='rounded-full' style={{border: '5px solid black w-fit'}}>0</p><br /><p>Total Events</p></span>
+          <div className="p-5 w-5/6 rounded-2xl font-semibold text-xl">
+            <h1 className="text-2xl font-bold">Events Participated</h1>
+            <div className="flex justify-around">
+              <span><p className='eventCountHolder'>88</p><p>Total Events</p></span>
+              <div className='flex gap-3 text-xl'>
+                <span>
+                  <p>Webinars :</p>
+                  <p>Mock Interviews : </p>
+                  <p>WorkShops : </p>
+                </span>
+                <span>
+                  <p>0</p>
+                  <p>0</p>
+                  <p>0</p>
+                </span>
+              </div>
             </div>
           </div>
+          {userProf.role !== 'Student' && <div className="p-5 w-5/6 rounded-2xl font-semibold text-xl">
+            <h1 className="text-2xl font-bold">Events Conducted</h1>
+            <div className="flex justify-around">
+              <span><p className='eventCountHolder'>88</p><p>Total Events</p></span>
+              <div className='flex gap-3 text-xl'>
+                <span>
+                  <p>Webinars :</p>
+                  <p>Mock Interviews : </p>
+                  <p>WorkShops : </p>
+                </span>
+                <span>
+                  <p>0</p>
+                  <p>0</p>
+                  <p>0</p>
+                </span>
+              </div>
+            </div>
+          </div>}
         </div>
       </div>
     </div>

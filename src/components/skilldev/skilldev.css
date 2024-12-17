@@ -1,0 +1,51 @@
+.skilldev{
+    height: 100vh;
+    width: 100vw;
+    background: url(../../assets/headBack.jpg) no-repeat fixed;
+    position: fixed;
+    background-size: cover;
+}
+
+.skilldev input{
+    background: rgb(123, 123, 243);
+    &:focus, &:active{
+        outline: none;
+    }
+}
+
+.skilldev select{
+    background: #df2629;
+    &:focus, &:active{
+        outline: none;
+    }
+}
+
+.skilldev .eventBox{
+    backdrop-filter: blur(100px);
+    color: white;
+    box-shadow: 0 0 10px white;
+    margin: 1rem;
+    display: flex;
+    padding: 1.5rem;
+    padding-top: 3rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+    border-radius: 1rem;
+    &>h1{
+        font-size: x-large;
+        font-weight: 700;
+    }
+}
+
+.skilldev .eventBox .event{
+    background: blue;
+    padding: 1rem;
+}
+
+.skilldev .eventHolder{
+    max-height: calc(100vh - 190px);
+    overflow-y: scroll;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+}

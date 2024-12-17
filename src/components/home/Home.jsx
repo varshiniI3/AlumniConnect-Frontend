@@ -74,7 +74,7 @@ function Home() {
             )
           }
         </div>
-        <a href="/" className='text-2xl justify-center items-center font-bold absolute right-5 top-1/3 p-2 rounded-md hover:bg-white hover:text-red-600 bg-red-700 text-white' id='viewMore'>View More Events</a>
+        <a href="/events" className='text-2xl justify-center items-center font-bold absolute right-5 top-1/3 p-2 rounded-md hover:bg-white hover:text-red-600 bg-red-700 text-white' id='viewMore'>View More Events</a>
       </div>
       <div className="flex gap-9 p-10 text-white" style={{background : '#003049'}}>
         <img id='campusImg' src="https://images.collegedunia.com/public/college_data/images/campusimage/1479984572Untitled.jpg" alt="campus" />
