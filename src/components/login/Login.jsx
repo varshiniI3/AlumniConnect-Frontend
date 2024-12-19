@@ -4,6 +4,8 @@ import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom';
+import linkedIn from '../../assets/linkedIn.png'
+import google from '../../assets/google.png'
 
 
 function Login() {
@@ -12,6 +14,7 @@ function Login() {
   const[email, setEmail] = useState('')
   const[showPass, setShowPass] = useState(true)
   const [remember, setRemember] = useState(false)
+  
   const handleLogin = async (e) => {
     e.preventDefault()
     try {
@@ -32,6 +35,14 @@ function Login() {
       console.log(error)
     }
   }
+
+  const handleGoogleSignup = () => {
+    window.location.href = `${process.env.REACT_APP_BASE_URL}/user/signinWithGoogle`;
+  };
+
+  const handleLinkedInSignup = () => {
+    window.location.href = `${process.env.REACT_APP_BASE_URL}/user/signinWithLinkedIn`;
+  };
 
   return (
     <div className="login flex justify-center items-center text-2xl">
@@ -55,11 +66,11 @@ function Login() {
             &nbsp;&nbsp;&nbsp;&nbsp;<a href="/">Forgot password</a>
           </span>
         </form>
-        <span className='p-14 z-10'>
+        <span className='p-5 z-10'>
           <center>
-          <h1>Welcome to Login</h1><br />
-          <p>Don't have an account?</p>
-          <button className='m-5 mt-10 font-semibold p-3 pl-5 pr-5 rounded-full hover:bg-white hover:text-red-700 hover:shadow-sm bg-transparent' style={{ border: '1px solid white', transition: 'ease-in-out .2s'}}>SignUp</button>          
+          <h1>Don't have an account?</h1><br />
+          <button className='signupBtn' onClick={handleGoogleSignup} ><img src={google} alt="google Logo" />SignIn with Google</button><br />       
+          <button className='signupBtn' onClick={handleLinkedInSignup}><img src={linkedIn} alt="linkedIn Logo" />SignIn with LinkedIn</button>          
           </center>
         </span>
       </div>

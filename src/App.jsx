@@ -7,6 +7,7 @@ import Profile from './components/profile/Profile';
 import Cookies from 'js-cookie'
 // import Events from './components/events/Events';
 import Skilldev from './components/skilldev/Skilldev';
+import Signup from './components/signup/Signup';
 
 function App() {
   const email = Cookies.get('email') || null
@@ -17,6 +18,7 @@ function App() {
         <Route path='/' element={<Home/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/skilldev' element={<Skilldev/>} />
+        <Route path='/signup' element={<Signup/>} />
         <Route path='/profile' element={email === null ? <Login/> : <Profile/>} />
         <Route path='*' element={<PageNotFound/>} />
       </Routes>

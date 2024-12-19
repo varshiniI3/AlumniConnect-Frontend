@@ -55,7 +55,7 @@
 }
 
 .login h1{
-    @apply text-4xl font-bold
+    @apply text-3xl font-bold
 }
 
 .login #loginFooter{
@@ -68,4 +68,14 @@
 
 .login label{
     cursor: pointer;
+}
+
+.login .signupBtn{
+    display: flex;
+    gap: .5rem;
+    font-size: smaller;
+    &>img{
+        width: 1.5rem;
+        margin-top: 3px;
+    }
 }
