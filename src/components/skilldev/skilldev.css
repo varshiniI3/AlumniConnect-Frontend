@@ -13,36 +13,76 @@
     }
 }
 
-.skilldev select{
+.skilldev #roleSelect{
     background: #df2629;
     &:focus, &:active{
         outline: none;
     }
 }
 
+.skilldev #statusSelect{
+    background: none;
+    color: white;
+    position: fixed;
+    z-index: 10;
+    width: fit-content;
+    margin: 10px;
+    margin-top: 0;
+    padding-right: 20px;
+    &:focus, &:active{
+        outline: none;
+    }
+    &>option{
+        color: black;
+        font-size: small;
+    }
+}
+
 .skilldev .eventBox{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    &>h1{
+        font-size: x-large;
+        font-weight: 700;
+    }
+    &::-webkit-scrollbar{
+        display: none;
+    }
+}
+
+.skilldev .eventBox .event{
+    background: skyblue;
+    color: black;
+    padding: 1rem;
+    border-radius: 15px;
+    max-width: calc(50% - 10px);
+}
+
+.skilldev .eventBox .event a{
+    padding: 10px;
+    background: rgb(157, 157, 245);
+    border-radius: 15px;
+    box-shadow: 0 0 10px black, 0 0 20px black;
+    transition: .2s;
+}
+
+.skilldev .eventBox .event a:hover{
+    background: rgb(110, 110, 255);
+    transform: scale(1.05);
+}
+
+.skilldev .eventHolder{
     backdrop-filter: blur(100px);
     color: white;
     box-shadow: 0 0 10px white;
     margin: 1rem;
     display: flex;
+    flex-direction: column;
     padding: 1.5rem;
-    padding-top: 3rem;
-    gap: 1rem;
-    flex-wrap: wrap;
+    padding-top: 1rem;
     border-radius: 1rem;
-    &>h1{
-        font-size: x-large;
-        font-weight: 700;
-    }
-}
-
-.skilldev .eventBox .event{
-    background: blue;
-    padding: 1rem;
-}
-
-.skilldev .eventHolder{
     max-height: calc(100vh - 190px);
     overflow-y: scroll;
     &::-webkit-scrollbar{

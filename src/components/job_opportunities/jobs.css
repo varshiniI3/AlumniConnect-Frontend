@@ -1,4 +1,4 @@
-.eventsPage{
+.jobs{
     height: 100vh;
     width: 100vw;
     background: url(../../assets/headBack.jpg) no-repeat fixed;
@@ -6,21 +6,21 @@
     background-size: cover;
 }
 
-.eventsPage input{
+.jobs input{
     background: rgb(118, 118, 170);
     &:focus, &:active{
         outline: none;
     }
 }
 
-.eventsPage #roleSelect{
+.jobs #roleSelect{
     background: #df2629;
     &:focus, &:active{
         outline: none;
     }
 }
 
-.eventsPage #statusSelect{
+.jobs #statusSelect{
     background: none;
     color: white;
     position: fixed;
@@ -38,7 +38,7 @@
     }
 }
 
-.eventsPage .eventBox{
+.jobs .jobBox{
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
@@ -52,18 +52,15 @@
     }
 }
 
-.eventsPage .eventBox .event{
+.jobs .jobBox .job{
     background: skyblue;
     color: black;
     padding: 1rem;
     border-radius: 15px;
-    &>span{
-        width: calc(50% - 10px);
-        height: 100%;
-    }
+    max-width: calc(50%-10px);
 }
 
-.eventsPage .eventBox .event a{
+.jobs .jobBox .job a{
     padding: 10px;
     background: rgb(157, 157, 245);
     border-radius: 15px;
@@ -71,12 +68,12 @@
     transition: .2s;
 }
 
-.eventsPage .eventBox .event a:hover{
+.jobs .jobBox .job a:hover{
     background: rgb(110, 110, 255);
     transform: scale(1.05);
 }
 
-.eventsPage .eventHolder{
+.jobs .jobHolder{
     backdrop-filter: blur(100px);
     color: white;
     box-shadow: 0 0 10px white;
@@ -89,5 +86,48 @@
     overflow-y: scroll;
     &::-webkit-scrollbar{
         display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .jobs {
+        height: auto;
+        width: 100%;
+        position: relative;
+    }
+
+    .jobs .jobBox {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .jobs .jobBox .job {
+        max-width: 100%;
+    }
+
+    .jobs .jobHolder {
+        height: auto;
+        margin: 0.5rem;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .jobs {
+        padding: 1rem;
+    }
+
+    .jobs input, .jobs #roleSelect, .jobs #statusSelect {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    .jobs .jobBox .job a {
+        padding: 5px;
+        font-size: small;
+    }
+
+    .jobs .jobHolder {
+        padding: 0.5rem;
     }
 }
