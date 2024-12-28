@@ -11,6 +11,7 @@ function Connect() {
   const[reciever, setReciever] = useState(null)
   const[userList, setUserList] = useState([])
   const navigate = useNavigate()
+  setShowList(false)
   const name = Cookies.get('name') || null
   if(name === null){
     navigate('/login');
@@ -26,7 +27,7 @@ function Connect() {
       }
     }
     getUsers()
-  }, [])
+  }, [name])
 
   return (
     <div className='connect'>
