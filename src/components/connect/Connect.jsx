@@ -5,13 +5,14 @@ import Cookies from 'js-cookie';
 import './connect.css'
 import Navbar from '../home/Navbar'
 import ChatSpace from './ChatSpace'
+import { MdAddComment } from "react-icons/md";
 
 function Connect() {
   const[showList, setShowList] = useState(false)
   const[reciever, setReciever] = useState(null)
   const[userList, setUserList] = useState([])
   const navigate = useNavigate()
-  setShowList(false)
+
   const name = Cookies.get('name') || null
   if(name === null){
     navigate('/login');
@@ -33,7 +34,9 @@ function Connect() {
     <div className='connect'>
       <Navbar/>
       <div className="flex">
-      <div className="w-3/12 bg-white ">{
+      <div className="w-3/12 bg-white relative">
+        <button onClick={() => setShowList(!showList)}><MdAddComment/></button>
+      {
         showList ? 
         <input type="search" placeholder='Search by name'/>
         :
