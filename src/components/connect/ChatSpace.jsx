@@ -21,7 +21,6 @@ function ChatSpace({reciever, id, sender}) {
       try {
         const res = await axios.patch(`${process.env.REACT_APP_BASE_URL}/chat/${chatId}`)
         setChat(res.data.chat)
-        console.log(res.data.chat)
       } catch (error) {
         console.log(error)
       }
