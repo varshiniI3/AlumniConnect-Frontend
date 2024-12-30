@@ -11,6 +11,7 @@ function Connect() {
   const[showList, setShowList] = useState(false)
   const[reciever, setReciever] = useState(null)
   const[userList, setUserList] = useState([])
+  const[sender, setSender] = useState('')
   const navigate = useNavigate()
 
   const name = Cookies.get('name') || null
@@ -23,6 +24,7 @@ function Connect() {
       try {
         const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user/getUsers`)
         setUserList(res.data.users.filter(user => user.name !== name))
+        setSender(res.data.users.find(user => user.name === name))
       } catch (error) {
         console.log(error)
       }
@@ -52,7 +54,7 @@ function Connect() {
           }</div>
         </div>
       }</div>
-        {reciever !== null && <ChatSpace reciever={reciever}/>}
+        {reciever !== null && <ChatSpace reciever={reciever} id={reciever._id} sender={sender}/>}
       </div>
     </div>
   )
