@@ -29,6 +29,8 @@ function Profile() {
 
   const handleUserUpdateSubmit = async (e) => {
     e.preventDefault()
+    if(isEdit)
+      return
     try{
       const res = await axios.patch(`${process.env.REACT_APP_BASE_URL}/user/updateProfile`, userProf)
       alert(res.data.message)
@@ -81,12 +83,20 @@ function Profile() {
               <p>Name</p><hr />
               <p>Email</p><hr />
               <p>Roll number</p><hr />
+              { userProf.role === 'alumni' && <><p>Branch</p><hr/></>}
+              { userProf.role === 'alumni' && <><p>Y.O.P</p><hr/></>}
+              { userProf.role === 'alumni' && <><p>Company</p><hr/></>}
+              { userProf.role === 'alumni' && <><p>Designation</p><hr/></>}
               <p>Role</p>
             </span>
             <form className='flex-col gap-4 flex w-full relative' onSubmit={handleUserUpdateSubmit}>
               <input type="text" value={userProf.name} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,name: e.target.value}))}/><hr/>
               <input type="text" value={userProf.email} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,email: e.target.value}))}/><hr/>
               <input type="text" value={userProf.regId} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,regId: e.target.value}))}/><hr/>
+              { userProf.role === 'alumni' && <><input type="text" value={userProf.branch} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,branch: e.target.value}))}/><hr/></>}
+              { userProf.role === 'alumni' && <><input type="number" value={userProf.yop} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,yop: e.target.value}))}/><hr/></>}
+              { userProf.role === 'alumni' && <><input type="text" value={userProf.company} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,company: e.target.value}))}/><hr/></>}
+              { userProf.role === 'alumni' && <><input type="text" value={userProf.designation} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,designation: e.target.value}))}/><hr/></>}
               <p className='first-letter:uppercase pl-3'>{userProf.role}</p>
               <button type='submit' className='absolute bottom-1 right-1' onClick={()=>setIsEdit(!isEdit)}>{isEdit ? <FaSave /> : <FaEdit/> }</button>
             </form>
