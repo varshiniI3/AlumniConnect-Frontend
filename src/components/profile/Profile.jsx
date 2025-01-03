@@ -12,6 +12,8 @@ function Profile() {
   const [isEdit, setIsEdit] = useState(false)
   const cookieEmail = Cookies.get('email')
   const [userProf, setUserProf] = useState()
+  const [isPicUpdt, setIsPicUpdt] = useState(false)
+  const [file, setFile] = useState(null)
 
   useEffect(()=>{
     const getProfile = async () => {
@@ -27,6 +29,37 @@ function Profile() {
 
   const handleUserUpdateSubmit = async (e) => {
     e.preventDefault()
+    try{
+      const res = await axios.patch(`${process.env.REACT_APP_BASE_URL}/user/updateProfile`, userProf)
+      alert(res.data.message)
+    }catch (err){
+      console.log(err)
+      alert('Something went wrong in updating profile')
+    } finally{
+      window.location.reload()
+    }
+  }
+
+  const profilePicUpload = async (e) => {
+    e.preventDefault()
+    try {
+      axios.post(`${process.env.REACT_APP_BASE_URL}/user/profilepicUpload`, {uname: userProf.username, file: file}, {
+        headers : { 'Content-Type' : 'multipart/form-data', },
+      })
+      alert('Profile image updated successfully')
+    } catch (error) {
+      console.log(error)
+      alert('Unexpected error in updating image')
+    } finally{
+      window.location.reload()
+    }
+  }
+
+  const logout  = () => {
+    Cookies.remove('email')
+    Cookies.remove('role')
+    Cookies.remove('name')
+    window.location.reload()
   }
 
   return (
@@ -35,8 +68,12 @@ function Profile() {
       {userProf && 
         <div className="flex p-4 pl-20 pr-20 gap-20 relative" id='profileContent'>
         <span className='p-3 rounded-2xl sticky top-0 h-full'>
-          <img src={userProf.imageUrl} alt="user" className='w-72 h-72 rounded-full' />
-          {userProf.email !== cookieEmail && <button>Message</button> }
+          <form onSubmit={profilePicUpload}>
+            {isPicUpdt ? <input type='file' accept='image/*' required onChange={e => setFile(e.target.files[0])}/> : <img src={userProf.imageUrl} alt="user" className='w-72 h-72 rounded-full'/>}
+            {isPicUpdt && <center><button className='m-3 pt-1 text-xl font-bold hover:bg-white duration-200 origin- pb-1 p-3 border-solid border-black border-2' >Submit</button></center>}
+          </form>
+          {!isPicUpdt && <center><button className='m-3 pt-1 text-xl font-bold hover:bg-white duration-200 pb-1 p-3 border-solid border-black border-2' onClick={() => {setIsPicUpdt(true)}}>Update profile image</button></center>}
+          <center><button className='m-3 pt-1 text-xl font-bold hover:bg-white duration-200 pb-1 p-3 border-solid border-black border-2' onClick={logout}>Logout</button></center>
         </span>
         <div className='flex flex-col w-4/6 gap-10'>
           <div className='userCard w-5/6 text-2xl flex'>
@@ -48,7 +85,7 @@ function Profile() {
             </span>
             <form className='flex-col gap-4 flex w-full relative' onSubmit={handleUserUpdateSubmit}>
               <input type="text" value={userProf.name} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,name: e.target.value}))}/><hr/>
-              <input type="text" value={userProf.email} disabled onChange={(e) => setUserProf(() => ({...userProf,email: e.target.value}))}/><hr/>
+              <input type="text" value={userProf.email} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,email: e.target.value}))}/><hr/>
               <input type="text" value={userProf.regId} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,regId: e.target.value}))}/><hr/>
               <p className='first-letter:uppercase pl-3'>{userProf.role}</p>
               <button type='submit' className='absolute bottom-1 right-1' onClick={()=>setIsEdit(!isEdit)}>{isEdit ? <FaSave /> : <FaEdit/> }</button>

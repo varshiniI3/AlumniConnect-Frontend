@@ -10,6 +10,7 @@ import Signup from './components/signup/Signup';
 import Events from './components/events/Events';
 import Jobs from './components/job_opportunities/Jobs';
 import Connect from './components/connect/Connect';
+import PrivacyPolicy from './components/privacyPolicy/PrivacyPolicy';
 
 function App() {
   const email = Cookies.get('email') || null
@@ -24,6 +25,7 @@ function App() {
         <Route path='/events' element={<Events/>} />
         <Route path='/connect' element={<Connect/>} />
         <Route path='/jobOpportunities' element={<Jobs/>} />
+        <Route path='/privacypolicy' element={<PrivacyPolicy/>} />
         <Route path='/profile' element={email === null ? <Login/> : <Profile/>} />
         <Route path='*' element={<PageNotFound/>} />
       </Routes>

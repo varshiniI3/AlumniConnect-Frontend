@@ -25,11 +25,20 @@ function Signup (){
   const [yop, setYop] = useState('')
   const [branch, setBranch] = useState('')
   const [isUpdtProf, setIsUpdtProf] = useState(false)
+  const params = new URLSearchParams(location.search);
+  const user = params.get('user')
+  const token = params.get('id')
+  if(user === 'old'){
+    const mail = params.get('email')
+    const name = params.get('name')
+    const role = params.get('role')
+    Cookies.set('email', mail, {expires: 7})
+    Cookies.set('name', name, {expires: 7})
+    Cookies.set('role', role, {expires: 7})
+    navigate('/')
+  }
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const token = params.get('id')
-    const user = params.get('user')
     if(token){
       axios.post(`${process.env.REACT_APP_BASE_URL}/user/verifyToken`, {token})
       .then((res) => {
@@ -43,11 +52,7 @@ function Signup (){
     }else{
       navigate(-1);
     }
-    Cookies.set('email', email)
-    if(user === 'old'){
-      navigate('/')
-    }
-  }, [location, navigate, email]);
+  }, [location, navigate, email, token]);
 
   const handleFileChange = (e) => {
     const temp = e.target.files[0];
@@ -103,6 +108,9 @@ function Signup (){
       .then(finRes => {
         alert(finRes.data.message)
         if(finRes.data.message === 'User Created successfully'){
+          Cookies.set('email', email)
+          Cookies.set('name', name)
+          Cookies.set('role', role)
           navigate('/')
         }
       })
