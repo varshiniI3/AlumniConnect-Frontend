@@ -88,7 +88,7 @@ function Home() {
         </span>
       </div>
       <div className="footer flex justify-around text-white" style={{background : '#003049'}}>
-        <a href="/privactPolicy" className='a' >Privacy policy</a>
+        <a href="/privacypolicy" className='a' >Privacy policy</a>
         <a href="/" className='a' >Terms & Conditions</a>
         <a href="/" ><FaSquareXTwitter className='text-4xl hover:-translate-y-2'/></a>
         <a href="/" ><FaSquareInstagram className='text-4xl hover:-translate-y-2'/></a>
