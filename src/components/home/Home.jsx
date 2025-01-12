@@ -32,7 +32,6 @@ function Home() {
           <center><pre>Reconnect   Inspire   Empower</pre></center>
           <br /><br /><br /><br /><br />
         </div><br />
-        <div className="w-full bg-green"><marquee className='text-white font-xl'>Announcements</marquee></div>
       </div>
       <h1 className='pt-1 pb-1 text-center text-5xl font-bold' style={{background : '#fdf0d5', color: '#c1121f'}}>Events</h1>
       <div className="flex justify-between relative" style={{background: '#fdf0d5'}}>
