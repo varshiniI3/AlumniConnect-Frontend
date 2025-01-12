@@ -30,10 +30,10 @@ function Signup (){
   const token = params.get('id')
   if(user === 'old'){
     const mail = params.get('email')
-    const name = params.get('name')
+    const _id = params.get('_id')
     const role = params.get('role')
     Cookies.set('email', mail, {expires: 7})
-    Cookies.set('name', name, {expires: 7})
+    Cookies.set('_id', _id, {expires: 7})
     Cookies.set('role', role, {expires: 7})
     navigate('/')
   }

@@ -33,21 +33,24 @@ function ChatSpace({reciever, id, sender}) {
   })
 
   const sendMessage = () => {
+    if(msg === ``){return}
     socket.emit('chatmessage', sender, reciever, msg)
     setMsg('')
   }
 
   return (
     <div className='w-9/12 relative bg-black text-white border-solid border-2 border-gray-200 '>
+      <center><h1>{reciever.name}</h1></center>
+      <img src={reciever.imageUrl} alt="user" className="w-12 h-12 rounded-full"/>
       <div className="msgHolder w-11/12 flex flex-col gap-2 p-2 h-full">{
         chat.length > 0 && chat.map((msg, key) => 
-          <div key={key} className={msg.sender === sender.name ? 'text-right w-full' : 'text-left w-full'}>
+          <div key={key} className={msg.sender === sender._id ? 'text-right w-full' : 'text-left w-full'}>
             <p>{msg.message}</p>
           </div>)
       }</div>
       <center>
       <input type="text" className='border-solid border-4 border-black text-black w-9/12' value={msg} onChange={(e) => setMsg(e.target.value)}/>
-      <button onClick={sendMessage}>Send</button>
+      <button onClick={sendMessage} className='absolute'>Send</button>
       </center>
     </div>
   )

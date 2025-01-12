@@ -6,16 +6,7 @@ import Navbar from './Navbar';
 
 function Home() {
 
-//   const [alumni, setAlumni] = useState([
-//     {sno : "1", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'},
-//     {sno : "2", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'},
-//     {sno : "3", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}, 
-//     {sno : "4", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}, 
-//     {sno : "5", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}, 
-//     {sno : "6", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}, 
-//     {sno : "7", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}, 
-//     {sno : "8", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}
-//   ])    
+//      
 //   const [eventPics, setEventPics] = useState([
 //     {imgUrl : 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', name : 'sample Event', type : 'event type'},
 //     {imgUrl : 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', name : 'sample Event', type : 'event type'},
@@ -23,16 +14,7 @@ function Home() {
 //     {imgUrl : 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', name : 'sample Event', type : 'event type'},
 //     {imgUrl : 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', name : 'sample Event', type : 'event type'}
 //   ])
-  const alumni = [
-    {sno : "1", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'},
-    {sno : "2", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'},
-    {sno : "3", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}, 
-    {sno : "4", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}, 
-    {sno : "5", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}, 
-    {sno : "6", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}, 
-    {sno : "7", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}, 
-    {sno : "8", name : "John", designation : "Software Developer", location : 'Los_Angles', imageURL : 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'}
-  ]
+  
   const eventPics = [
     {imgUrl : 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', name : 'sample Event', type : 'event type'},
     {imgUrl : 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', name : 'sample Event', type : 'event type'},
@@ -44,24 +26,13 @@ function Home() {
   return (
     <div className='home'>
       <div className="header">
-        <Navbar/><br />
+        <Navbar/><br /><br /><br /><br /><br /><br /><br />
         <div className="mt-5 text-white">
-            <center><h1 className = 'text-5xl font-bold'>Alumni Connect</h1></center>
-            <center><pre>Reconnect   Inspire   Empower</pre></center>
-        </div><br /><br />
-        <div className="userCardHolder">
-            {
-            alumni.map((user, key) => 
-              <div key={key} className='userCard'>
-                <center><img src={user.imageURL} alt="user" className='rounded-full' /></center>
-                <b>{user.name}</b>
-                <p>{user.designation}</p>
-                <p>{user.location}</p>
-                <center><button className='p-2 rounded-lg mt-2 hover:bg-red-700 text-white bg-blue-950 duration-200'>View Profile</button></center>
-              </div>
-            )
-        }
-        </div>
+          <center><h1 className = 'text-5xl font-bold'>Alumni Connect</h1></center>
+          <center><pre>Reconnect   Inspire   Empower</pre></center>
+          <br /><br /><br /><br /><br />
+        </div><br />
+        <div className="w-full bg-green"><marquee className='text-white font-xl'>Announcements</marquee></div>
       </div>
       <h1 className='pt-1 pb-1 text-center text-5xl font-bold' style={{background : '#fdf0d5', color: '#c1121f'}}>Events</h1>
       <div className="flex justify-between relative" style={{background: '#fdf0d5'}}>
