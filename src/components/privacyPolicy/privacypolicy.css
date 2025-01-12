@@ -1,7 +1,7 @@
 .privacypolicy {
     font-family: 'Poppins', sans-serif;
     color: #24272C;
-    background-color: #FDF0D5;
+    background-color: #ffffff;
     min-height: 100vh;
     padding: 0;
     margin: 0;
@@ -20,7 +20,7 @@
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 20px;
-    color: #192F59;
+    color: #090909;
     text-align: center;
 }
 
