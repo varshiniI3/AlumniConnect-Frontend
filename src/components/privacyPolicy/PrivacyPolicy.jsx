@@ -35,6 +35,11 @@ function PrivacyPolicy() {
                     You have the right to access, update, or delete your personal information. To exercise these rights,
                     please contact us at support@alumni-connect.com.
                 </p>
+                <h2>Changes to This Policy</h2>
+                <p>
+                    We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an
+                    updated revision date.
+                </p>
                 <h2>Contact Us</h2>
                 <p>
                     If you have any questions or concerns about this Privacy Policy, feel free to contact us at
