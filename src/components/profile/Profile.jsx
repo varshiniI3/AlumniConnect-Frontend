@@ -4,8 +4,8 @@ import './profile.css'
 import Navbar from '../home/Navbar'
 import { FaEdit, FaSave  } from "react-icons/fa";
 import Bronze from '../../assets/Bronze.png'
-import Silver from '../../assets/Silver.png'
-import Gold from '../../assets/Gold.png'
+import Silver from '../../assets/as.png'
+import Gold from '../../assets/ag.png'
 import axios from 'axios'
 
 function Profile() {
@@ -60,7 +60,7 @@ function Profile() {
   const logout  = () => {
     Cookies.remove('email')
     Cookies.remove('role')
-    Cookies.remove('name')
+    Cookies.remove('_id')
     window.location.reload()
   }
 
@@ -104,7 +104,7 @@ function Profile() {
           <div className='w-5/6 rounded-2xl p-5'>
             <h1 className='text-2xl mb-5 font-bold'>Badges</h1>
             <span className="badgeHolder gap-5">
-              <img src={Bronze} alt="bronzeBadge" />
+              <img src={Bronze} alt="bronzeBadge" data-cont = "Bronze" />
               <img src={Silver} alt="silverBadge" />
               <img src={Gold} alt="goldBadge" />
             </span>

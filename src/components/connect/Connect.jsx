@@ -14,8 +14,9 @@ function Connect() {
   const[sender, setSender] = useState('')
   const navigate = useNavigate()
 
-  const name = Cookies.get('name') || null
-  if(name === null){
+  const _id = Cookies.get('_id') || null
+  if(_id === null){
+    alert('login to continue');
     navigate('/login');
   }
 
@@ -23,14 +24,14 @@ function Connect() {
     const getUsers = async () => {
       try {
         const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user/getUsers`)
-        setUserList(res.data.users.filter(user => user.name !== name))
-        setSender(res.data.users.find(user => user.name === name))
+        setUserList(res.data.users.filter(user => user._id !== _id))
+        setSender(res.data.users.find(user => user._id === _id))
       } catch (error) {
         console.log(error)
       }
     }
     getUsers()
-  }, [name])
+  }, [_id])
 
   return (
     <div className='connect'>
