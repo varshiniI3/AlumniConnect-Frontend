@@ -1,71 +1,679 @@
-import React, { useEffect, useState } from 'react'
-import './jobs.css'
-import Navbar from '../home/Navbar'
+import React, { useState } from "react";
+import "./jobs.css";
+import Navbar from '../home/Navbar';
 import { FaSearch } from "react-icons/fa";
-import axios from 'axios'
-import Cookies from 'js-cookie'
-import { GiDuration } from "react-icons/gi";
-import { IoLocation } from "react-icons/io5";
 
-function Jobs() {
-    const [name, setName] = useState('')
-    const [totJobs, setTotJobs] = useState([])
-    const [activeJobs, setActiveJobs] = useState([])
-    const email = Cookies.get('email') || null
 
-    useEffect(() => {
-      const getJobs = async () => {
-        try {
-          const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/jobs/getJobs`)
-          setTotJobs(res.data.jobs)
-        } catch (error) {
-          console.log(error)
-        }
-      }
-      getJobs()
-    }, [])
-  
-    useEffect(() => {
-      if(totJobs.length > 0){
-        setActiveJobs(totJobs.filter(job => 
-          (job.company && job.company.toLowerCase().includes(name.toLowerCase())) || 
-          (job.role && job.role.toLowerCase().includes(name.toLowerCase()))
-        ))
-      }
-    }, [name, totJobs]) 
-  
+const Jobs = () => {
+  const [filters, setFilters] = useState({
+    status: [],
+    location: [],
+    experience: [],
+    jobType: [],
+    salaryRange: [],
+  });
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const [showFilterCategory, setShowFilterCategory] = useState({
+    status: false,
+    location: false,
+    experience: false,
+    jobType: false,
+    salaryRange: false,
+  });
+
+  const [jobs, setJobs] = useState([
+    {
+      id: 1,
+      role: "Frontend Developer",
+      company: "TechCorp",
+      description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      status: "Applied",
+      experience: "Fresher",
+      jobType: "Full Time",
+      ctc: "6LPA",
+      location: "Hyderabad",
+      skills: ["React", "JavaScript", "CSS"],
+    },
+    {
+      id: 2,
+      role: "Backend Developer",
+      company: "InnovateSoft",
+      description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      status: "Not Applied",
+      experience: "1-2 years",
+      jobType: "Internship",
+      ctc: "4LPA",
+      location: "Mumbai",
+      skills: ["Node.js", "Express", "MongoDB"],
+    },
+    {
+      id: 3,
+      role: "Full Stack Developer",
+      company: "Buildify",
+      description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      status: "Applied",
+      experience: "5+ years",
+      jobType: "Full Time",
+      ctc: "12LPA",
+      location: "Remote",
+      skills: ["React", "Node.js", "GraphQL"],
+    },
+  ]);
+
+  const toggleFilterCategory = (category) => {
+    setShowFilterCategory((prev) => ({
+      ...prev,
+      [category]: !prev[category],
+    }));
+  };
+
+  const handleFilterChange = (category, value) => {
+    setFilters((prev) => {
+      const currentValues = prev[category];
+      const newValues = currentValues.includes(value)
+        ? currentValues.filter((v) => v !== value)
+        : [...currentValues, value];
+      return { ...prev, [category]: newValues };
+    });
+  };
+
+    const filteredJobs = jobs.filter((job) => {
+    const matchesSearch =
+      job.role.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      job.company.toLowerCase().includes(searchQuery.toLowerCase());
+
     return (
-      <div className="jobs">
-        <Navbar/>
-        <div className="flex justify-center relative m-8">
-          <span className="relative w-full md:w-3/6 text-xl font-bold">
-            <input type="text" id='searchArea' className='focus:border-none active:border-none w-full p-3 pr-6' value={name} onChange={(e) => {setName(e.target.value)}}/>
-            <label htmlFor="searchArea" className='absolute bottom-3 right-1 text-2xl'><FaSearch/></label>
-          </span>
-        </div>
-        <div className="jobHolder">   
-          <div className="jobBox relative">
-            {
-              activeJobs.length === 0 ? <center><h1 className='text-4xl font-bold'>No Jobs Found</h1></center> : 
-              <div className='flex flex-col md:flex-row gap-5 flex-wrap w-full'>{
-                activeJobs.map((job, key) => {
-                  return (
-                    <div className="job w-full md:w-fit flex flex-col flex-wrap" key={key}>
-                      <p className='text-2xl font-bold'>{job.company}</p>
-                      <p className='text-xl font-bold'>{job.role}</p>
-                      <p>{job.description}</p>
-                      <span className='flex flex-row gap-1'><p className="font-semibold">Experience:</p><p>{job.experienceRange.from+' - '+job.experienceRange.to+' years'}</p></span>
-                      <span className='flex flex-row gap-1'><p className="font-semibold">Salary:</p><p>{job.salaryRange.from+' - '+job.salaryRange.to+' LPA'}</p></span>
-                      <p className='text-l flex mt-1 mb-1'><IoLocation className='text-xl'/>{job.location}</p>
-                      <p className='flex mt-1 mb-1'><GiDuration className='text-xl'/>{job.applyBefore.slice(8,10)+'/'+job.applyBefore.slice(5,7)+'/'+job.applyBefore.slice(0,4)}
-                        {job.applyBefore.slice(11, 13) > "12" ? "  "+(job.applyBefore.slice(11, 13)-'12')+job.applyBefore.slice(13,16)+'PM': "  "+job.applyBefore.slice(11,16)+'AM'}</p>
-                      <center><br/><a href={email === null ? '/login' :job.applyLink}>Apply now</a><br/></center>
-                    </div>
-            )})}</div>
-          }</div>
-        </div>
-      </div>
-    )
-}
+      matchesSearch && 
+      (filters.status.length === 0 || filters.status.includes(job.status)) &&
+      (filters.location.length === 0 || filters.location.includes(job.location)) &&
+      (filters.experience.length === 0 || filters.experience.includes(job.experience)) &&
+      (filters.jobType.length === 0 || filters.jobType.includes(job.jobType)) &&
+      (filters.salaryRange.length === 0 || filters.salaryRange.some((range) => {
+        if (range === "Below 5L") return parseFloat(job.ctc) < 5;
+        if (range === "5L to 10L") return parseFloat(job.ctc) >= 5 && parseFloat(job.ctc) <= 10;
+        if (range === "Above 10L") return parseFloat(job.ctc) > 10;
+        return true;
+      }))
+    );
+  });
 
-export default Jobs
+
+  return (
+    <div>
+      <Navbar/>
+          {/* Search Bar */}
+          <div className="search-bar">
+          <FaSearch className="search-icon" />
+            <input
+              type="text"
+              placeholder="Search by job title or company"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+    <div className="jobs-container">
+      <div className="filter-panel">
+        <div className="filter-header">
+          <span>Filter by</span>
+          <button
+            onClick={() =>
+              setShowFilterCategory({
+                status: false,
+                location: false,
+                experience: false,
+                jobType: false,
+                salaryRange: false,
+              })
+            }
+          >
+            Collapse all  
+          </button>
+          <p>|</p>
+          <button
+            onClick={() =>
+              setShowFilterCategory({
+                status: true,
+                location: true,
+                experience: true,
+                jobType: true,
+                salaryRange: true,
+              })
+            }
+          >
+              Expand all
+          </button>
+        </div>
+       
+        <div className={`filters ${!showFilterCategory.status ? "collapsed" : ""}`}>
+            <h3 onClick={() => toggleFilterCategory("status")}>Status</h3>
+            {showFilterCategory.status && (
+              <ul>
+                <li>
+                  <input
+                    type="checkbox"
+                    checked={filters.status.includes("Applied")}
+                    onChange={() => handleFilterChange("status", "Applied")}
+                  />
+                  Applied
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    checked={filters.status.includes("Not Applied")}
+                    onChange={() => handleFilterChange("status", "Not Applied")}
+                  />
+                  Not Applied
+                </li>
+              </ul>
+            )}
+        </div>
+        <div className={`filters ${!showFilterCategory.location ? "collapsed" : ""}`}>
+          <h3 onClick={() => toggleFilterCategory("location")}>Location</h3>
+          {showFilterCategory.location && (
+            <ul>
+              <li>
+                <input
+                  type="checkbox"
+                  checked={filters.location.includes("Hyderabad")}
+                  onChange={() => handleFilterChange("location", "Hyderabad")}
+                />
+                Hyderabad
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  checked={filters.location.includes("Mumbai")}
+                  onChange={() => handleFilterChange("location", "Mumbai")}
+                />
+                Mumbai
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  checked={filters.location.includes("Chennai")}
+                  onChange={() => handleFilterChange("location", "Chennai")}
+                />
+                Chennai
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  checked={filters.location.includes("Remote")}
+                  onChange={() => handleFilterChange("location", "Remote")}
+                />
+                Remote
+              </li>
+            </ul>
+          )}
+        </div>
+        <div className={`filters ${!showFilterCategory.experience ? "collapsed" : ""}`}>
+          <h3 onClick={() => toggleFilterCategory("experience")}>Experience</h3>
+          {showFilterCategory.experience && (
+            <ul>
+              <li>
+                <input
+                  type="checkbox"
+                  checked={filters.experience.includes("Fresher")}
+                  onChange={() => handleFilterChange("experience", "Fresher")}
+                />
+                Fresher
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  checked={filters.experience.includes("1-2 years")}
+                  onChange={() => handleFilterChange("experience", "1-2 years")}
+                />
+                1-2 years
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  checked={filters.experience.includes("5+ years")}
+                  onChange={() => handleFilterChange("experience", "5+ years")}
+                />
+                5+ years
+              </li>
+            </ul>
+          )}
+        </div>
+        <div className={`filters ${!showFilterCategory.jobType ? "collapsed" : ""}`}>
+          <h3 onClick={() => toggleFilterCategory("jobType")}>Job Type</h3>
+          {showFilterCategory.jobType && (
+            <ul>
+              <li>
+                <input
+                  type="checkbox"
+                  checked={filters.jobType.includes("Full Time")}
+                  onChange={() => handleFilterChange("jobType", "Full Time")}
+                />
+                Full Time
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  checked={filters.jobType.includes("Internship")}
+                  onChange={() => handleFilterChange("jobType", "Internship")}
+                />
+                Internship
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  checked={filters.jobType.includes("Internship + PPO")}
+                  onChange={() => handleFilterChange("jobType", "Internship + PPO")}
+                />
+                Internship + PPO
+              </li>
+            </ul>
+          )}
+        </div>
+
+        <div className={`filters ${!showFilterCategory.salaryRange ? "collapsed" : ""}`}>
+          <h3 onClick={() => toggleFilterCategory("salaryRange")}>Salary Range</h3>
+          {showFilterCategory.salaryRange && (
+            <ul>
+              <li>
+                <input
+                  type="checkbox"
+                  checked={filters.salaryRange.includes("Below 5L")}
+                  onChange={() => handleFilterChange("salaryRange", "Below 5L")}
+                />
+                Below 5L
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  checked={filters.salaryRange.includes("5L to 10L")}
+                  onChange={() => handleFilterChange("salaryRange", "5L to 10L")}
+                />
+                5L to 10L
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  checked={filters.salaryRange.includes("Internship + PPO")}
+                  onChange={() => handleFilterChange("salaryRange", "Above 10L")}
+                />
+                Above 10L
+              </li>
+            </ul>
+          )}
+        </div>
+        <button
+  onClick={() => {
+    setFilters({
+      status: [],
+      location: [],
+      experience: [],
+      jobType: [],
+      salaryRange: [],
+    });
+    setSearchQuery("");
+  }}
+  className="reset-button"
+>
+  Reset Filters
+</button>
+      </div>
+      <div className="jobs-list">
+        <h2>Jobs</h2>
+        {filteredJobs.map((job) => (
+          <div className="job-card" key={job.id}>
+            <h3>{job.role}</h3>
+            <p>Company: {job.company}</p>
+            <p>Description : {job.description}</p>
+            <p>Status: {job.status}</p>
+            <p>Experience: {job.experience}</p>
+            <p>Job Type: {job.jobType}</p>
+            <p>CTC: {job.ctc}</p>
+            <p>Location: {job.location}</p>
+            <p>Skills: {job.skills.join(", ")}</p>
+            <button>Apply</button>
+          </div>
+        ))}
+      </div>
+    </div>
+    </div>
+  );
+};
+
+export default Jobs;
+
+
+
+// import React, { useEffect, useState } from "react";
+// import "./jobs.css";
+// import Navbar from "../home/Navbar";
+// import { FaSearch } from "react-icons/fa";
+// import axios from "axios";
+// import Cookies from "js-cookie";
+// import { GiDuration } from "react-icons/gi";
+// import { IoLocation } from "react-icons/io5";
+
+// const Jobs = () => {
+//   const [filters, setFilters] = useState({
+//     status: [],
+//     location: [],
+//     experience: [],
+//     jobType: [],
+//     salaryRange: [],
+//   });
+//   const [searchQuery, setSearchQuery] = useState("");
+//   const [showFilterCategory, setShowFilterCategory] = useState({
+//     status: false,
+//     location: false,
+//     experience: false,
+//     jobType: false,
+//     salaryRange: false,
+//   });
+//   const [totJobs, setTotJobs] = useState([]);
+//   const [activeJobs, setActiveJobs] = useState([]);
+//   const email = Cookies.get("email") || null;
+
+//   useEffect(() => {
+//     const getJobs = async () => {
+//       try {
+//         const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/jobs/getJobs`);
+//         setTotJobs(res.data.jobs);
+//       } catch (error) {
+//         console.error("Error fetching jobs:", error);
+//       }
+//     };
+//     getJobs();
+//   }, []);
+
+//   useEffect(() => {
+//     const filtered = totJobs.filter((job) => {
+//       const matchesSearch =
+//         job.role.toLowerCase().includes(searchQuery.toLowerCase()) ||
+//         job.company.toLowerCase().includes(searchQuery.toLowerCase());
+
+//       return (
+//         matchesSearch &&
+//         (filters.status.length === 0 || filters.status.includes(job.status)) &&
+//         (filters.location.length === 0 || filters.location.includes(job.location)) &&
+//         (filters.experience.length === 0 || filters.experience.includes(job.experienceRange.from)) &&
+//         (filters.jobType.length === 0 || filters.jobType.includes(job.jobType)) &&
+//         (filters.salaryRange.length === 0 ||
+//           filters.salaryRange.some((range) => {
+//             const jobCTC = parseFloat(job.salaryRange.from);
+//             if (range === "Below 5L") return jobCTC < 5;
+//             if (range === "5L to 10L") return jobCTC >= 5 && jobCTC <= 10;
+//             if (range === "Above 10L") return jobCTC > 10;
+//             return true;
+//           }))
+//       );
+//     });
+//     setActiveJobs(filtered);
+//   }, [searchQuery, filters, totJobs]);
+
+//   const toggleFilterCategory = (category) => {
+//     setShowFilterCategory((prev) => ({
+//       ...prev,
+//       [category]: !prev[category],
+//     }));
+//   };
+
+//   const handleFilterChange = (category, value) => {
+//     setFilters((prev) => {
+//       const currentValues = prev[category];
+//       const newValues = currentValues.includes(value)
+//         ? currentValues.filter((v) => v !== value)
+//         : [...currentValues, value];
+//       return { ...prev, [category]: newValues };
+//     });
+//   };
+
+//   return (
+//     <div>
+//       <Navbar />
+//       {/* Search Bar */}
+//       <div className="search-bar">
+//         <FaSearch className="search-icon" />
+//         <input
+//           type="text"
+//           placeholder="Search by job title or company"
+//           value={searchQuery}
+//           onChange={(e) => setSearchQuery(e.target.value)}
+//         />
+//       </div>
+
+//       <div className="jobs-container">
+//         {/* Filters */}
+//         <div className="filter-panel">
+//           <div className="filter-header">
+//             <span>Filter by</span>
+//             <button
+//               onClick={() =>
+//                 setShowFilterCategory({
+//                   status: false,
+//                   location: false,
+//                   experience: false,
+//                   jobType: false,
+//                   salaryRange: false,
+//                 })
+//               }
+//             >
+//               Collapse all
+//             </button>
+//             <p>|</p>
+//             <button
+//               onClick={() =>
+//                 setShowFilterCategory({
+//                   status: true,
+//                   location: true,
+//                   experience: true,
+//                   jobType: true,
+//                   salaryRange: true,
+//                 })
+//               }
+//             >
+//               Expand all
+//             </button>
+//           </div>
+//           {/* Filter Sections */}
+//           <div className={`filters ${!showFilterCategory.status ? "collapsed" : ""}`}>
+//             <h3 onClick={() => toggleFilterCategory("status")}>Status</h3>
+//             {showFilterCategory.status && (
+//               <ul>
+//                 <li>
+//                   <input
+//                     type="checkbox"
+//                     checked={filters.status.includes("Applied")}
+//                     onChange={() => handleFilterChange("status", "Applied")}
+//                   />
+//                   Applied
+//                 </li>
+//                 <li>
+//                   <input
+//                     type="checkbox"
+//                     checked={filters.status.includes("Not Applied")}
+//                     onChange={() => handleFilterChange("status", "Not Applied")}
+//                   />
+//                   Not Applied
+//                 </li>
+//               </ul>
+//             )}
+//           </div>
+//        <div className={`filters ${!showFilterCategory.location ? "collapsed" : ""}`}>         
+//         <h3 onClick={() => toggleFilterCategory("location")}>Location</h3>
+//          {showFilterCategory.location && (
+//             <ul>
+//               <li>
+//                 <input
+//                   type="checkbox"
+//                   checked={filters.location.includes("Hyderabad")}
+//                   onChange={() => handleFilterChange("location", "Hyderabad")}
+//                 />
+//                 Hyderabad
+//               </li>
+//               <li>
+//                 <input
+//                   type="checkbox"
+//                   checked={filters.location.includes("Mumbai")}
+//                   onChange={() => handleFilterChange("location", "Mumbai")}
+//                 />
+//                 Mumbai
+//               </li>
+//               <li>
+//                 <input
+//                   type="checkbox"
+//                   checked={filters.location.includes("Chennai")}
+//                   onChange={() => handleFilterChange("location", "Chennai")}
+//                 />
+//                 Chennai
+//               </li>
+//               <li>
+//                 <input
+//                   type="checkbox"
+//                   checked={filters.location.includes("Remote")}
+//                   onChange={() => handleFilterChange("location", "Remote")}
+//                 />
+//                 Remote
+//               </li>
+//             </ul>
+//           )}
+//         </div>
+//         <div className={`filters ${!showFilterCategory.experience ? "collapsed" : ""}`}>
+//           <h3 onClick={() => toggleFilterCategory("experience")}>Experience</h3>
+//           {showFilterCategory.experience && (
+//             <ul>
+//               <li>
+//                 <input
+//                   type="checkbox"
+//                   checked={filters.experience.includes("Fresher")}
+//                   onChange={() => handleFilterChange("experience", "Fresher")}
+//                 />
+//                 Fresher
+//               </li>
+//               <li>
+//                 <input
+//                   type="checkbox"
+//                   checked={filters.experience.includes("1-2 years")}
+//                   onChange={() => handleFilterChange("experience", "1-2 years")}
+//                 />
+//                 1-2 years
+//               </li>
+//               <li>
+//                 <input
+//                   type="checkbox"
+//                   checked={filters.experience.includes("5+ years")}
+//                   onChange={() => handleFilterChange("experience", "5+ years")}
+//                 />
+//                 5+ years
+//               </li>
+//             </ul>
+//           )}
+//         </div>
+//         <div className={`filters ${!showFilterCategory.jobType ? "collapsed" : ""}`}>
+//           <h3 onClick={() => toggleFilterCategory("jobType")}>Job Type</h3>
+//           {showFilterCategory.jobType && (
+//             <ul>
+//               <li>
+//                 <input
+//                   type="checkbox"
+//                   checked={filters.jobType.includes("Full Time")}
+//                   onChange={() => handleFilterChange("jobType", "Full Time")}
+//                 />
+//                 Full Time
+//               </li>
+//               <li>
+//                 <input
+//                   type="checkbox"
+//                   checked={filters.jobType.includes("Internship")}
+//                   onChange={() => handleFilterChange("jobType", "Internship")}
+//                 />
+//                 Internship
+//               </li>
+//               <li>
+//                 <input
+//                   type="checkbox"
+//                   checked={filters.jobType.includes("Internship + PPO")}
+//                   onChange={() => handleFilterChange("jobType", "Internship + PPO")}
+//                 />
+//                 Internship + PPO
+//               </li>
+//             </ul>
+//           )}
+//         </div>
+
+//         <div className={`filters ${!showFilterCategory.salaryRange ? "collapsed" : ""}`}>
+//           <h3 onClick={() => toggleFilterCategory("salaryRange")}>Salary Range</h3>
+//           {showFilterCategory.salaryRange && (
+//             <ul>
+//               <li>
+//                 <input
+//                   type="checkbox"
+//                   checked={filters.salaryRange.includes("Below 5L")}
+//                   onChange={() => handleFilterChange("salaryRange", "Below 5L")}
+//                 />
+//                 Below 5L
+//               </li>
+//               <li>
+//                 <input
+//                   type="checkbox"
+//                   checked={filters.salaryRange.includes("5L to 10L")}
+//                   onChange={() => handleFilterChange("salaryRange", "5L to 10L")}
+//                 />
+//                 5L to 10L
+//               </li>
+//               <li>
+//                 <input
+//                   type="checkbox"
+//                   checked={filters.salaryRange.includes("Internship + PPO")}
+//                   onChange={() => handleFilterChange("salaryRange", "Above 10L")}
+//                 />
+//                 Above 10L
+//               </li>
+//             </ul>
+//           )}
+//         </div>
+//           <button
+//             onClick={() => {
+//               setFilters({
+//                 status: [],
+//                 location: [],
+//                 experience: [],
+//                 jobType: [],
+//                 salaryRange: [],
+//               });
+//               setSearchQuery("");
+//             }}
+//             className="reset-button"
+//           >
+//             Reset Filters
+//           </button>
+//         </div>
+
+//         {/* Job Cards */}
+//         <div className="jobs-list">
+//           <h2>Jobs</h2>
+          
+//           {activeJobs.length === 0 ? <center><h1 className='text-3xl font-bold'>No Jobs Found</h1></center> : 
+//           activeJobs.map((job) => (
+//             <div className="job-card" key={job.id}>
+//               <h3>{job.role}</h3>
+//               <p>Company: {job.company}</p>
+//               <p>Description: {job.description}</p>
+//               <p>Status: {job.status}</p>
+//               <p>
+//                 Experience: {job.experienceRange.from} - {job.experienceRange.to} years
+//               </p>
+//               <p>
+//                 Salary: {job.salaryRange.from} - {job.salaryRange.to} LPA
+//               </p>
+//               <p>Location: {job.location}</p>
+//               <p>Apply Before: {job.applyBefore}</p>
+//               <a href={email === null ? "/login" : job.applyLink}>Apply Now</a>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Jobs;
