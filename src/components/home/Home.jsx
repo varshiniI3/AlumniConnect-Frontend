@@ -126,13 +126,13 @@ function Home() {
     <div className="footer-right">
       <h3 className="text-2xl font-semibold mb-4">Follow Us</h3>
       <div className="flex justify-center space-x-6 mb-4">
-        <a href="https://twitter.com" target="_blank" rel="noreferrer" className="text-2xl text-gray-300 hover:text-white transition-all">
+        <a href="https://twitter.com" target="_blank" className="text-2xl text-gray-300 hover:text-white transition-all">
           <FaSquareXTwitter />
         </a>
-        <a href="https://instagram.com" target="_blank" rel="noreferrer" className="text-2xl text-gray-300 hover:text-white transition-all">
+        <a href="https://instagram.com" target="_blank" className="text-2xl text-gray-300 hover:text-white transition-all">
           <FaSquareInstagram />
         </a>
-        <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-2xl text-gray-300 hover:text-white transition-all">
+        <a href="https://linkedin.com" target="_blank" className="text-2xl text-gray-300 hover:text-white transition-all">
           <FaLinkedin />
         </a>
       </div>
