@@ -36,6 +36,7 @@
 .profile .badgeHolder{
     display: flex;
     width: 100%;
+    position: relative;
     overflow-x: scroll;
     &>img{
         width: 8rem;
@@ -43,6 +44,15 @@
     &::-webkit-scrollbar{
         display: none;
     }
+}
+
+.profile .badgeHolder img::before{
+    position: absolute;
+    z-index: 50;
+    content: attr(data-cont);
+    height: 100%;
+    width: 100%;
+    background: black;
 }
 
 .profile .eventCountHolder{
