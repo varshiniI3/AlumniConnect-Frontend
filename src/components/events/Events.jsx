@@ -27,7 +27,7 @@ function Events() {
         "Networking Lunch for Students and Guests",
       ],
       image:
-        "https://static.vecteezy.com/system/resources/thumbnails/021/636/092/small_2x/graduation-banner-design-with-space-for-text-class-of-2023-free-vector.jpg",
+        "https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?cs=srgb&dl=pexels-pixabay-267885.jpg&fm=jpg",
     },
   ];
 
