@@ -44,7 +44,11 @@
     color: #fff;
     cursor: pointer;
     padding: 8px 12px;
-transition: background-color .3s ease;
+transition: .2s ;
+     &:hover{
+        transform: translateY(-10px);
+        transform: scale(1.12);
+    }
 }
 
 .signup input, .signup label, .signup select{
