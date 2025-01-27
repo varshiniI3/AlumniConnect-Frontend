@@ -1,6 +1,24 @@
-.signup{
-    background: url(../../assets/headBack.jpg) no-repeat fixed;
+.signup {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
     background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.signup::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url(https://alumni-connect-proj.netlify.app/static/media/img.904a5d2….jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5; /* Adjust the opacity here */
+    z-index: -1; /* Ensures the background stays behind content */
 }
 
 .signup .formHolder{
