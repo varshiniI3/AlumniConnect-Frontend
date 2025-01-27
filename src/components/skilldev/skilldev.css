@@ -1,91 +1,146 @@
-.skilldev{
-    height: 100vh;
-    width: 100vw;
-    background: url(../../assets/headBack.jpg) no-repeat fixed;
-    position: fixed;
-    background-size: cover;
+.skilldev {
+  height: 100vh;
+  width: 100vw;
+  background: white;
 }
 
-.skilldev input{
-    background: rgb(123, 123, 243);
-    &:focus, &:active{
-        outline: none;
-    }
+.skilldev .button-group {
+  display: flex;
+  gap: 1rem;
 }
 
-.skilldev #roleSelect{
-    background: #df2629;
-    &:focus, &:active{
-        outline: none;
-    }
+.skilldev .button {
+  background-color: #f2f2f2;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
-.skilldev #statusSelect{
-    background: none;
-    color: white;
-    position: fixed;
-    z-index: 10;
-    width: fit-content;
-    margin: 10px;
-    margin-top: 0;
-    padding-right: 20px;
-    &:focus, &:active{
-        outline: none;
-    }
-    &>option{
-        color: black;
-        font-size: small;
-    }
+.skilldev .button:hover {
+  background-color: #007BFF;
+  color: white;
+  border-color: #007BFF;
 }
 
-.skilldev .eventBox{
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    overflow-y: scroll;
-    &>h1{
-        font-size: x-large;
-        font-weight: 700;
-    }
-    &::-webkit-scrollbar{
-        display: none;
-    }
+.skilldev .button.active {
+  background-color: #007BFF;
+  color: white;
+  border-color: #007BFF;
 }
 
-.skilldev .eventBox .event{
-    background: skyblue;
-    color: black;
-    padding: 1rem;
-    border-radius: 15px;
-    max-width: calc(50% - 10px);
+.skilldev .search-bar {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
 }
 
-.skilldev .eventBox .event a{
-    padding: 10px;
-    background: rgb(157, 157, 245);
-    border-radius: 15px;
-    box-shadow: 0 0 10px black, 0 0 20px black;
-    transition: .2s;
+.skilldev .search-input {
+  width: 300px;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 25px;
+  border: 2px solid #ddd;
+  outline: none;
+  box-shadow: none;
 }
 
-.skilldev .eventBox .event a:hover{
-    background: rgb(110, 110, 255);
-    transform: scale(1.05);
+.skilldev .search-bar .search-input:focus {
+  border-color: #007BFF;
 }
 
-.skilldev .eventHolder{
-    backdrop-filter: blur(100px);
-    color: white;
-    box-shadow: 0 0 10px white;
-    margin: 1rem;
-    display: flex;
-    flex-direction: column;
-    padding: 1.5rem;
-    padding-top: 1rem;
-    border-radius: 1rem;
-    max-height: calc(100vh - 190px);
-    overflow-y: scroll;
-    &::-webkit-scrollbar{
-        display: none;
-    }
+.skilldev .search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 1.5rem;
+}
+
+.skilldev .status-filter {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 20px;
+}
+
+.skilldev .status-label {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.skilldev .status-label input {
+  margin-right: 8px;
+}
+
+.skilldev .eventBox {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+}
+
+.skilldev .eventBox .event {
+  background: white;
+  color: black;
+  border: 2px solid red;
+  padding: 1rem;
+  border-radius: 10px;
+  max-width: calc(50% - 10px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.skilldev .eventBox .event a {
+  padding: 10px;
+  background: red;
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 0 10px black, 0 0 20px black;
+  transition: 0.2s;
+}
+
+.skilldev .eventBox .event a:hover {
+  background: black;
+  color: white;
+  transform: scale(1.05);
+}
+
+.skilldev .eventHolder {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.9);
+  color: black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  padding-top: 1rem;
+  border-radius: 1rem;
+  max-height: calc(100vh - 190px);
+  overflow-y: scroll;
+}
+
+.skilldev .eventHolder::-webkit-scrollbar {
+  display: none;
+}
+
+/* Adding styles for the dropdown */
+.skilldev .dropdown {
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 25px;
+  border: 2px solid #ddd;
+  outline: none;
+  box-shadow: none;
+  background-color: white;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.skilldev .dropdown:focus {
+  border-color: #007BFF;
 }
