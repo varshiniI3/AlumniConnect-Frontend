@@ -1,6 +1,24 @@
-.signup{
-    background: url(../../assets/headBack.jpg) no-repeat fixed;
+.signup {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
     background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.signup::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url(../../assets/img.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8; /* Adjust the opacity here */
+    z-index: -1; /* Ensures the background stays behind content */
 }
 
 .signup .formHolder{
@@ -20,12 +38,17 @@
 }
 
 .signup button{
-    background: white;
-    border: 1px solid black;
-    width: fit-content;
-    padding: 3px;
-    padding-left: 8px;
-    padding-right: 8px;
+        background-color: #b72d23;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    padding: 8px 12px;
+transition: .2s ;
+     &:hover{
+        transform: translateY(-10px);
+        transform: scale(1.12);
+    }
 }
 
 .signup input, .signup label, .signup select{
