@@ -14,10 +14,10 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: url(https://alumni-connect-proj.netlify.app/static/media/img.904a5d2….jpg) no-repeat;
+    background: url(../../assets/img.jpg) no-repeat;
     background-size: cover;
     background-position: center;
-    opacity: 0.5; /* Adjust the opacity here */
+    opacity: 0.8; /* Adjust the opacity here */
     z-index: -1; /* Ensures the background stays behind content */
 }
 
