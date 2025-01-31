@@ -1,95 +1,151 @@
-.login {
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-}
 
-/* Apply blur effect to the background image using ::after */
-.login::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url(../../assets/img.jpg) no-repeat center center;
-    background-size: cover;
-    filter: blur(10px); /* Adjust the blur level here */
-    z-index: -1; /* Ensures the blurred background is behind the content */
-}
 
-.login form{
-    padding: 50px;
-}
-
-.formContainer{
-    backdrop-filter: blur(40px);
-    padding: 10px;
-    border-radius: 20px;
-    box-shadow: 0 0 10px white, 0 0 20px white;
-    color: white;
-    overflow: hidden;
-    &::before{
-        content: '';
-        position: absolute;
-        background: linear-gradient(to bottom right,#780000,  #c1121f);
-        /* background: linear-gradient(to right, transparent, black); */
-        width: 50%;
-        height: 100%;
-        z-index: 9;
-    }
-}
-
-.login input{
-    border: 1px solid #669bbc;
-    background: #fdf0d5;
-    color: #000000;
-    border-radius: 10px;
-    @apply m-1 p-2
-}
-
-.login form button{
-    color: #fdf0d5;
-    border-radius: 10px;
-    padding: 6px;
-    width: 60%;
-    transition: .2s;
-    &:hover{
-        transform: translateY(-10px);
-        transform: scale(1.12);
-    }
-    @apply font-semibold
-}
-
-.login span{
-    @apply relative
-}
-
-.login h1{
-    @apply text-3xl font-bold
-}
-
-.login #loginFooter{
-    color: #0371ac;
-    transition: .2s;
-    :hover{
-        color: skyblue;
-    }
-}
-
-.login label{
-    cursor: pointer;
-}
-
-.login .signupBtn{
+   .login-container {
     display: flex;
-    gap: .5rem;
-    font-size: smaller;
-    &>img{
-        width: 1.5rem;
-        margin-top: 3px;
-    }
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    /* background-color: rgb(40, 13, 13); */
+  }
+  
+  .info-section {
+    width: 40%;
+    padding: 50px;
+    text-align: center;
+    background-color: #f0e3e3;
+    font-family: 'Arial', 'sans-serif';
+    color: rgb(17, 16, 16);
+    height: 68vh;
+    border-radius: 10px 0 0 10px;
+  }
+  
+  .info-section h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: #b56060;
+  }
+
+  .info-subtitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #c79898;
+  letter-spacing: 1px;
 }
+
+  
+  .info-section p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .login-form-container {
+    width: 40%;
+    padding: 40px;
+    background-color: white;
+    border-radius: 0 10px 10px 0;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login-form h2{
+    padding-bottom: 30px;
+    font-weight: bold;
+    font-size: large;
+    color: #88141c;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .login-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #b10009e0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .login-btn:hover {
+    background-color: #8a0007; /* Darker shade on hover */
+    transform: scale(1.05); /* Slight pop effect */
+  }
+  
+  
+  .social-login {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .button-container {
+    display: flex;
+    gap: 10px; /* Space between the buttons */
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .google-btn, .linkedin-btn {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: auto; /* Allow buttons to be their natural width */
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .google-btn:hover {
+    background-color: #f8f8f8; /* Light grey background on hover */
+    border-color: #88141c; /* Google red */
+    transform: scale(1.05);
+  }
+  
+  .linkedin-btn:hover {
+    background-color: #f8f8f8; /* Light grey background on hover */
+    border-color: #88141c; 
+    transform: scale(1.05);
+  }
+  
+  .google-btn img, .linkedin-btn img {
+    width: 20px;
+    margin-right: 10px;
+  }
+  
+  
+  .signup-link {
+    margin-top: 15px;
+    font-size: 1rem;
+  }
+  
+  .signup-link a {
+    color: #a00c11;
+    text-decoration: none;
+  }
+  

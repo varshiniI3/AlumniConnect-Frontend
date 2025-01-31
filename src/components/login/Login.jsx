@@ -1,83 +1,87 @@
-import React, { useState } from 'react'
-import './login.css'
-import { IoMdEye, IoMdEyeOff } from "react-icons/io";
-import axios from 'axios'
-import Cookies from 'js-cookie'
-import { useNavigate } from 'react-router-dom';
-import linkedIn from '../../assets/linkedIn.png'
-import google from '../../assets/google.png'
+import React, { useState } from "react";
+import "./login.css";
+import LinkedIn from '../../assets/linkedIn.png';
+import Google from '../../assets/google.png';
 
+const Login = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
-function Login() {
-  const navigate = useNavigate()
-  const[pass, setPass] = useState('')
-  const[email, setEmail] = useState('')
-  const[showPass, setShowPass] = useState(true)
-  const [remember, setRemember] = useState(false)
-  
-  const handleLogin = async (e) => {
-    e.preventDefault()
-    try {
-      const result = await axios.put(`${process.env.REACT_APP_BASE_URL}/user/login`, {email, pass})
-      if(result.data.message === 'Successfull'){
-        if(remember){
-          Cookies.set('email', email, {expires: 1})
-          Cookies.set('role', result.data.role, {expires: 1})
-          Cookies.set('name', result.data._id, {expires: 1})
-        }
-        else{
-          Cookies.set('email', email, {expires: 7})
-          Cookies.set('role', result.data.role, {expires: 7})
-          Cookies.set('name', result.data._id, {expires: 7})
-        }
-        navigate('/')
-      }
-      alert(result.data.message)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const handleGoogleSignup = () => {
-    window.location.href = `${process.env.REACT_APP_BASE_URL}/user/signinWithGoogle`;
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleLinkedInSignup = () => {
-    window.location.href = `${process.env.REACT_APP_BASE_URL}/user/signinWithLinkedIn`;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Login Submitted:", formData);
   };
 
   return (
-    <div className="login flex justify-center items-center text-2xl">
-      <div className="formContainer relative flex justify-center items-center before:right-0">
-        <form onSubmit={handleLogin} className='relative p-3'>
-          <center><h3 className='text-4xl font-semibold'>SignIn</h3></center>
-          <span>
-            <label htmlFor="email">Email</label><br />
-            <input type="email" id='email' required className='w-72 text-xl' value={email} onChange={(e)=>setEmail(e.target.value.replace(/\s+/g, ''))} /><br />
-          </span>
-          <span><br />
-            <label htmlFor="pass">Password</label><br />
-            <span>
-              <input type={showPass ? 'password' : 'text'} id='pass' required className='pr-8 pl-2' value={pass} onChange={(e)=>setPass(e.target.value.trim())} />
-              {showPass ? <IoMdEye onClick={()=>setShowPass(!showPass)} className='absolute top-1 right-2 text-black' /> : <IoMdEyeOff onClick={()=>setShowPass(!showPass)} className='absolute top-1 right-2 text-black' />}
-            </span><br /><br />
-          </span>
-          <center><button type="submit" className={pass !=='' && email !== '' ? 'mr-4 bg-sky-600' :'mr-4 bg-gray-600 cursor-not-allowed'} disabled={pass === '' || email === ''}>Login</button><br /></center>
-          <span className='text-xl' id='loginFooter'>
-            <input type="checkbox" name="" id="remMe" className='scale-150' onChange={() => {setRemember(!remember)}}/><label htmlFor="remMe">Remember me</label>
-            &nbsp;&nbsp;&nbsp;&nbsp;<a href="/">Forgot password</a>
-          </span>
+    <div>
+    <div className="login-container">
+      {/* Alumni Connect Info Section */}
+      <div className="info-section">
+      <h1>Welcome to Alumni Connect</h1>
+      <h3 className="info-subtitle">Reconnect • Inspire • Empower</h3>
+      
+      <p>
+        Welcome home! This is more than a network—it’s your community. Reconnect with lifelong friends, 
+        rediscover shared memories, and build new opportunities together. Whether you're looking to grow your career, 
+        give back, or simply stay in touch, Alumni Connect keeps you connected—always.
+      </p>
+    </div>
+
+
+      {/* Login Form Section */}
+      <div className="login-form-container">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <h2>Login</h2>
+
+          <div className="input-group">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="input-group">
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <button type="submit" className="login-btn">Login</button>
+
+          <div className="social-login">
+            <button className="google-btn">
+              <img src={Google} alt="Google" />
+              Sign in with Google
+            </button>
+            <button className="linkedin-btn">
+              <img src={LinkedIn} alt="LinkedIn" />
+              Sign in with LinkedIn
+            </button>
+          </div>
+
+          <p className="signup-link">
+            Don't have an account? <a href="#">Sign Up</a>
+          </p>
         </form>
-        <span className='p-5 z-10'>
-          <center>
-          <h1>Don't have an account?</h1><br />
-          <button className='signupBtn' onClick={handleGoogleSignup} ><img src={google} alt="google Logo" />SignIn with Google</button><br />       
-          <button className='signupBtn' onClick={handleLinkedInSignup}><img src={linkedIn} alt="linkedIn Logo" />SignIn with LinkedIn</button>          
-          </center>
-        </span>
       </div>
     </div>
-  )
-}
+    </div>
+  );
+};
 
-export default Login
+export default Login;
