@@ -1,6 +1,76 @@
-.connect{
-    height: 100vh;
-    background : url('../../assets/headBack.jpg') no-repeat;
-    background-size: cover;
+.chatspace{
+    height: calc(100vh - 80px);   
+    border-right: 2px solid black;
+    background: rgb(179, 175, 175);
 }
 
+.chatspace .msgHolder{
+    height: calc(80%);
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        width: 0px;
+    }
+}
+
+.chatspace .msg{
+    width: 70%;
+    background: transparent;
+    border-bottom: 2px solid #463a3a;
+    &:focus, &:active{
+        outline: none;
+        border-bottom: 2px solid #1a1515;
+    }
+}
+
+.connect .userList{
+    height: calc(100vh - 80px);
+}
+
+.connect .userChatList{
+    display: flex;
+    flex-direction: column;
+    &>div{
+        padding: 5px;
+        border-radius: 15px;
+        &:hover{
+            box-shadow: 0 0 5px 0px black;
+        }
+    }
+}
+
+.connect .searchUserChat{
+    outline: none;
+    background: transparent;
+    border-bottom: 2px solid #463a3a;
+    &:focus, &:active{
+        outline: none;
+        border-bottom: 2px solid #1a1515;
+    }
+}
+
+.posts{
+    height: calc(100vh - 80px);
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        width: 0px;
+    }
+}
+
+.posts .postContainer{
+    border-radius: 15px;
+    box-shadow: 0 0 10px black;
+}
+
+.posts .postContainer .postImage{
+    border-radius: 10px;
+}
+
+.posts .postContainer .commentArea{
+    width: 70%;
+    background: transparent;
+    border-bottom: 2px solid #463a3a;
+    &:focus, &:active{
+        outline: none;
+        border-bottom: 2px solid #1a1515;
+    }
+}

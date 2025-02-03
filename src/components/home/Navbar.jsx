@@ -22,7 +22,7 @@ function Navbar() {
         <span
           className="text-lg font-bold cursor-pointer"
           onClick={() => navigate('/')}
-          style={{ fontFamily: 'Lobster, cursive', color: '#FFFFFF', fontSize: '2rem' }} // Increased font size
+          style={{ fontFamily: 'Lobster, cursive', color: '#FFFFFF', fontSize: '2.8rem', fontWeight:'100' }} // Increased font size
         >
           Alumni Connect
         </span>
@@ -61,10 +61,6 @@ function Navbar() {
           >
             Connect
           </a>
-        </div>
-
-        {/* Login/Profile Section */}
-        <div className="auth-link">
           {email === null ? (
             <a
               href="/login"
@@ -86,6 +82,7 @@ function Navbar() {
           )}
         </div>
       </div>
+      <br />
       <br />
       <br />
     </>

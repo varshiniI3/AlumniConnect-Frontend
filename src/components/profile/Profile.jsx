@@ -176,14 +176,14 @@ function Profile() {
           </div>}
           <div className='w-5/6 rounded-2xl p-5'>
           <h1 className="text-2xl font-bold">Posts</h1>
-          <span className="posts">
+          <span className="profPosts">
           {
             posts.map((post, index) => 
               <img src={post.imgUrl} alt="post" key={index}/>
             )
           }
           </span><br />
-          <a href="/connect">View all posts</a>
+          <div className="flex justify-between"><a href="/connect">View all posts</a><a href="/connect">Add new post</a></div>
           </div>
         </div>
       </div>}
