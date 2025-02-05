@@ -6,7 +6,6 @@
     align-items: center;
     height: 100vh;
     background-color: #f4f4f4;
-    /* background-color: rgb(40, 13, 13); */
   }
   
   .info-section {
@@ -16,8 +15,9 @@
     background-color: #f0e3e3;
     font-family: 'Arial', 'sans-serif';
     color: rgb(17, 16, 16);
-    height: 68vh;
+    height: 70vh;
     border-radius: 10px 0 0 10px;
+    margin-top: 70px;
   }
   
   .info-section h1 {
@@ -43,10 +43,12 @@
   
   .login-form-container {
     width: 40%;
-    padding: 40px;
+    padding: 30px;
     background-color: white;
+    height: 70vh;
     border-radius: 0 10px 10px 0;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 70px;
   }
   
   .login-form {
@@ -56,7 +58,7 @@
   }
 
   .login-form h2{
-    padding-bottom: 30px;
+    padding-bottom: 15px;
     font-weight: bold;
     font-size: large;
     color: #88141c;
@@ -69,7 +71,7 @@
   
   .input-group input {
     width: 100%;
-    padding: 10px;
+    /* padding-bottom: 10px; */
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
