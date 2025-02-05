@@ -29,7 +29,8 @@ const Jobs = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const [jobs, setJobs] = useState([
+  // const [jobs, setJobs] = useState([
+  const jobs = [
     {
       id: 1,
       role: "Frontend Developer",
@@ -69,7 +70,7 @@ const Jobs = () => {
       skills: ["React", "Node.js", "GraphQL"],
       deadline: "",
     },
-  ]);
+  ];
 
   const toggleFilterCategory = (category) => {
     setShowFilterCategory((prev) => ({
