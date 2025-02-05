@@ -84,7 +84,20 @@ function Login() {
               required
             />
           </div>
-
+          
+          <div className="options">
+            <label>
+              <input
+                type="checkbox"
+                name="remember"
+                checked={formData.remember}
+                onChange={handleChange}
+              />
+              Remember Me
+            </label>
+            <Link to="/forgot-password" className="forgot-password">Forgot Password?</Link>
+          </div>
+          
           <button type="submit" className="login-btn">Login</button> 
           </form>
           <div className="social-login" onClick={handleGoogleSignup}>
