@@ -90,8 +90,8 @@ function Login() {
               <input
                 type="checkbox"
                 name="remember"
-                checked={formData.remember}
-                onChange={handleChange}
+                checked={remember}
+                onChange={()=>setRemember(!remember)}
               />
               Remember Me
             </label>
