@@ -4,97 +4,85 @@
   background: white;
 }
 
-.skilldev .button-group {
+.content-wrapper {
   display: flex;
-  gap: 1rem;
-}
-
-.skilldev .button {
-  background-color: #f2f2f2;
-  border: 2px solid #ddd;
-  border-radius: 25px;
-  padding: 12px 20px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  transition: 0.3s;
-  cursor: pointer;
-}
-
-.skilldev .button:hover {
-  background-color: #007BFF;
-  color: white;
-  border-color: #007BFF;
-}
-
-.skilldev .button.active {
-  background-color: #007BFF;
-  color: white;
-  border-color: #007BFF;
-}
-
-.skilldev .search-bar {
-  display: flex;
-  align-items: center;
-  margin-left: 2rem;
-}
-
-.skilldev .search-input {
-  width: 300px;
-  padding: 12px;
-  font-size: 1rem;
-  border-radius: 25px;
-  border: 2px solid #ddd;
-  outline: none;
-  box-shadow: none;
-}
-
-.skilldev .search-bar .search-input:focus {
-  border-color: #007BFF;
-}
-
-.skilldev .search-icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #999;
-  font-size: 1.5rem;
-}
-
-.skilldev .status-filter {
-  display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 2rem;
-  margin-bottom: 20px;
+  padding: 20px;
+  height: 100%; /* Ensure the content-wrapper takes full height */
+  flex-direction: row;
 }
 
-.skilldev .status-label {
-  font-size: 1.1rem;
+.filters {
+  flex: 0 0 250px; /* Fixed width for the filters section */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-right: 2px solid #ddd; /* Vertical separator */
+  padding-right: 1rem;
+  height: auto; /* Allow filters section to adjust its height */
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter-group h3 {
+  font-size: 1.2rem;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
-.skilldev .status-label input {
+.filter-group label {
+  font-size: 1rem;
+}
+
+.filter-group input {
   margin-right: 8px;
 }
 
-.skilldev .eventBox {
+.eventHolder {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Ensure it takes up available space */
+  height: 100%; /* Ensure it fills the height of the screen */
+  padding: 1rem;
+  overflow-y: scroll;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.eventBox {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-  overflow-y: scroll;
+  flex-grow: 1; /* Allow event cards section to take available space */
+  padding-left: 20px; /* Space between event cards and filter section */
+  height: 100%; /* Ensures event cards section takes full height */
 }
 
-.skilldev .eventBox .event {
+.event-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.eventBox .event {
   background: white;
   color: black;
   border: 2px solid red;
   padding: 1rem;
   border-radius: 10px;
-  max-width: calc(50% - 10px);
+  width: 350px; /* Set a fixed width for event cards */
+  height: 400px; /* Set a fixed height for event cards */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.skilldev .eventBox .event a {
+.eventBox .event a {
   padding: 10px;
   background: red;
   color: white;
@@ -103,10 +91,33 @@
   transition: 0.2s;
 }
 
-.skilldev .eventBox .event a:hover {
+.eventBox .event a:hover {
   background: black;
   color: white;
   transform: scale(1.05);
+}
+
+.eventBox .event .event-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.eventBox .event .event-type-host {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.eventBox .event .event-description {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.eventBox .event .event-details {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 10px;
 }
 
 .skilldev .eventHolder {
@@ -114,33 +125,85 @@
   background: rgba(255, 255, 255, 0.9);
   color: black;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  margin: 1rem;
-  display: flex;
-  flex-direction: column;
-  padding: 1.5rem;
+  padding: 1rem;
   padding-top: 1rem;
   border-radius: 1rem;
-  max-height: calc(100vh - 190px);
-  overflow-y: scroll;
+  max-height: 100%; /* Ensure max-height is 100% */
 }
 
 .skilldev .eventHolder::-webkit-scrollbar {
   display: none;
 }
 
-/* Adding styles for the dropdown */
-.skilldev .dropdown {
-  padding: 12px;
-  font-size: 1rem;
-  border-radius: 25px;
-  border: 2px solid #ddd;
-  outline: none;
-  box-shadow: none;
-  background-color: white;
+.interested-button {
+  background-color: #4CAF50;  /* Green */
+  color: white;
+  padding: 10px 20px;
+  border: none;
   cursor: pointer;
-  transition: border-color 0.3s;
+  border-radius: 12px;
+  font-size: 16px;
+  margin-top: 10px;
 }
 
-.skilldev .dropdown:focus {
-  border-color: #007BFF;
+.interested-button:hover {
+  background-color: #45a049;
+}
+
+/* Reset Filters Button Container */
+.reset-filters-box {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  width: fit-content;
+  margin-left: auto; /* Align the button to the right */
+  padding-left: 1rem; /* Optional - add some left padding */
+}
+
+/* Reset Filters Button */
+.reset-filters-box button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 10px 20px;
+  text-align: center;
+  width: 100%; /* Ensure button stretches across the container */
+  border-radius: 12px;
+}
+
+/* Additional styles for visual effects */
+.reset-filters-box:hover {
+  background-color: rgb(167, 2, 2); /* Change color when hovering over the container */
+}
+
+.search-bar-container {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Centering the search bar */
+  padding: 10px;
+  margin-bottom: 10px; /* Space between search and events */
+  margin-top: auto;
+}
+
+.search-bar {
+  width: 60%;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.search-bar:focus {
+  border-color: #d32f2f;
+  box-shadow: 0 0 5px rgba(211, 47, 47, 0.5);
 }
