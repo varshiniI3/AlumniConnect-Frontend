@@ -1,84 +1,258 @@
-import React, { useEffect, useState } from 'react'
-import './skilldev.css'
-import Navbar from '../home/Navbar'
-import { FaSearch } from "react-icons/fa";
-import axios from 'axios'
+import React, { useEffect, useState } from 'react';
+import './skilldev.css';
+import Navbar from '../home/Navbar';
 import { PiChalkboardTeacherDuotone } from "react-icons/pi";
 import { MdDateRange, MdUpdate } from "react-icons/md";
+import axios from 'axios';
 
 function Skilldev() {
-  const [type, setType] = useState('')
-  const [name, setName] = useState('')
-  const [status, setStatus] = useState('active')
-  const [totEvents, setTotEvents] = useState([])
-  const [activeEvents, setActiveEvents] = useState([])
-  const sessionUrl = process.env.REACT_APP_SESSION_URL
+  const [filters, setFilters] = useState({
+    type: [],
+    status: [],
+  });
+  const [totEvents, setTotEvents] = useState([]);
+  const [activeEvents, setActiveEvents] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const sessionUrl = process.env.REACT_APP_SESSION_URL;
+
+  // Dummy events data
+  const dummyEventsData = [
+    {
+      title: "React Webinar",
+      type: "Webinar",
+      status: "upcoming",
+      hostName: "John Doe",
+      description: "An informative webinar on React for beginners.",
+      scheduledAt: "2025-02-20T10:00:00",
+      period: 60,
+      sessionId: "123abc",
+    },
+    {
+      title: "MERN Stack Workshop",
+      type: "Workshop",
+      status: "active",
+      hostName: "Jane Smith",
+      description: "Hands-on workshop for building full-stack apps with MERN.",
+      scheduledAt: "2025-02-10T14:00:00",
+      period: 120,
+      sessionId: "456def",
+    },
+    {
+      title: "Mock Interview for Web Developers",
+      type: "Mock Interview",
+      status: "past",
+      hostName: "Bob Johnson",
+      description: "Prepare for your next interview with a mock session.",
+      scheduledAt: "2025-01-15T10:00:00",
+      period: 90,
+      sessionId: "789ghi",
+    },
+    {
+      title: "Node.js Masterclass",
+      type: "Webinar",
+      status: "active",
+      hostName: "Alice Cooper",
+      description: "Advanced Node.js concepts for experienced developers.",
+      scheduledAt: "2025-02-12T18:00:00",
+      period: 75,
+      sessionId: "101112jkl",
+    },
+    {
+      title: "Frontend Development Bootcamp",
+      type: "Workshop",
+      status: "upcoming",
+      hostName: "Charlie Brown",
+      description: "Intensive bootcamp to become proficient in frontend development.",
+      scheduledAt: "2025-02-18T09:00:00",
+      period: 180,
+      sessionId: "131415mno",
+    },
+  ];
 
   useEffect(() => {
-    const getEvents = async () => {
-      try {
-        const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/event/getEvents`)
-        setTotEvents(res.data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getEvents()
-  }, [])
+    setTotEvents(dummyEventsData);
+  }, []);
 
   useEffect(() => {
-    if(totEvents.length > 0){
-      setActiveEvents(totEvents.filter(event => event.type && event.type.toLowerCase().includes(type.toLowerCase()) && 
-      event.title && event.title.toLowerCase().includes(name.toLowerCase()) && event.status && event.status === status))
+    if (totEvents.length > 0) {
+      setActiveEvents(
+        totEvents.filter((event) => {
+          const matchesType = filters.type.length === 0 || filters.type.includes(event.type);
+          const matchesStatus = filters.status.length === 0 || filters.status.includes(event.status);
+          const matchesSearchTerm = event.title.toLowerCase().includes(searchTerm.toLowerCase());
+          return matchesType && matchesStatus && matchesSearchTerm;
+        })
+      );
     }
-  }, [type, name, totEvents, status]) 
+  }, [filters, totEvents, searchTerm]);
+
+  const handleFilterChange = (e, category) => {
+    const { value, checked } = e.target;
+    setFilters((prevFilters) => {
+      const newCategoryFilters = checked
+        ? [...prevFilters[category], value]
+        : prevFilters[category].filter((item) => item !== value);
+      return {
+        ...prevFilters,
+        [category]: newCategoryFilters,
+      };
+    });
+  };
+
+  const handleResetFilters = () => {
+    setFilters({
+      type: [],
+      status: [],
+    });
+  };
 
   return (
     <div className="skilldev">
-      <Navbar/>
-      <div className="flex justify-center relative m-12 mb-8">
-        <select id="roleSelect" onChange={(e) => {setType(e.target.value)}} className='text-xl font-bold p-3'>  
-          <option value="">All</option>       
-          <option value="Webinar">Webinars</option>       
-          <option value="Workshop">Workshops</option>       
-          <option value="Mock Interview">Mock Interviews</option>       
-        </select>
-        <span className="relative w-3/6 text-xl font-bold">
-          <input type="text" id='searchArea' className='focus:border-none active:border-none w-full  p-3 pr-6' value={name} onChange={(e) => {setName(e.target.value)}}/>
-          <label htmlFor="searchArea" className='absolute bottom-3 right-1 text-2xl'><FaSearch/></label>
-        </span>
-      </div>
-      <div className="eventHolder">         
-        <div className='w-fit text-2xl font-semibold'>
-          <select id='statusSelect' onChange={e => setStatus(e.target.value)}>
-            <option value="active">Active</option>
-            <option value="past">Past</option>
-            <option value="upcoming">Upcoming</option>
-          </select>
-        </div><br /><br />
-        <div className="eventBox relative ">
-          {
-            activeEvents.length === 0 ? <center><h1 className='text-4xl font-bold'>No Events Found</h1></center> : 
-            <div className='flex flex-row gap-5 flex-wrap w-full'>{
-              activeEvents.map((event, key) => {
-                return (
-                <div className="event flex flex-row justify-center items-center align-middle gap-20 w-fit" key={key}>
-                  <span>
-                    <p className='text-2xl font-semibold'>{event.title}</p>
-                    <p className='flex'>{event.type} <p className='ml-4 mr-4 font-bold'>|</p>{event.hostName}<PiChalkboardTeacherDuotone className='text-2xl'/></p>
-                    <p>{event.description}</p>
-                    <p className='flex mt-1 mb-1'><MdDateRange className='text-2xl'/>{event.scheduledAt.slice(8,10)+'/'+event.scheduledAt.slice(5,7)+'/'+event.scheduledAt.slice(0,4)}
-                      {event.scheduledAt.slice(11, 13) > "12" ? "  "+(event.scheduledAt.slice(11, 13)-'12')+event.scheduledAt.slice(13,16)+'PM': "  "+event.scheduledAt.slice(11,16)+'AM'}</p>
-                    <p className='flex'><MdUpdate className='text-2xl'/>{event.period} mins</p>
+      <Navbar />
+      <div className="content-wrapper">
+        {/* Filters Section */}
+        <div className="filters">
+          {/* Event Type Filters */}
+          <div className="filter-group">
+            <h3>Event Type</h3>
+            <label>
+              <input
+                type="checkbox"
+                value="Webinar"
+                checked={filters.type.includes('Webinar')}
+                onChange={(e) => handleFilterChange(e, 'type')}
+              />
+              Webinar
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                value="Workshop"
+                checked={filters.type.includes('Workshop')}
+                onChange={(e) => handleFilterChange(e, 'type')}
+              />
+              Workshop
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                value="Mock Interview"
+                checked={filters.type.includes('Mock Interview')}
+                onChange={(e) => handleFilterChange(e, 'type')}
+              />
+              Mock Interview
+            </label>
+          </div>
+
+          {/* Event Status Filters */}
+          <div className="filter-group">
+            <h3>Event Status</h3>
+            <label>
+              <input
+                type="checkbox"
+                value="active"
+                checked={filters.status.includes('active')}
+                onChange={(e) => handleFilterChange(e, 'status')}
+              />
+              Active
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                value="upcoming"
+                checked={filters.status.includes('upcoming')}
+                onChange={(e) => handleFilterChange(e, 'status')}
+              />
+              Upcoming
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                value="past"
+                checked={filters.status.includes('past')}
+                onChange={(e) => handleFilterChange(e, 'status')}
+              />
+              Past
+            </label>
+          </div>
+
+          {/* Reset Filters Button */}
+          <div className="reset-filters-box">
+            <button onClick={handleResetFilters}>Reset Filters</button>
+          </div>
+        </div>
+
+        
+
+        {/* Event Cards Section */}
+        <div className="eventHolder">
+          {/* Search Bar - Moved inside eventHolder */}
+  <div className="search-bar-container">
+    <input
+      type="text"
+      placeholder="Search by name..."
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      className="search-bar"
+    />
+  </div>
+
+          <div className="eventBox">
+            <div className="event-row">
+              {activeEvents.map((event, key) => (
+                <div className="event" key={key}>
+                  <span className="event-title">
+                    <p className="text-2xl font-semibold">{event.title}</p>
                   </span>
-                  <span className='flex h-full bg-blue min-w-fit text-xl font-semibold align-middle items-center'>{event.status === 'active' && <a href={`${sessionUrl}/${event.sessionId}`} rel='noreferrer' target='_blank'>Join Session</a>}</span>
+                  <span className="event-type-host flex">
+                    <p className="mr-4">{event.type}</p>
+                    <p className="ml-4 mr-4 font-bold">|</p>
+                    <p className="flex items-center gap-2">{event.hostName}</p>
+                  </span>
+                  <span className="event-description">
+                    <p>{event.description}</p>
+                  </span>
+                  <span className="event-details">
+                    <p className="flex mt-1 mb-1">
+                      <MdDateRange className="text-2xl" />
+                      {event.scheduledAt.slice(8, 10) +
+                        '/' +
+                        event.scheduledAt.slice(5, 7) +
+                        '/' +
+                        event.scheduledAt.slice(0, 4)}
+                      {event.scheduledAt.slice(11, 13) > '12'
+                        ? ' ' +
+                          (event.scheduledAt.slice(11, 13) - 12) +
+                          event.scheduledAt.slice(13, 16) +
+                          'PM'
+                        : ' ' + event.scheduledAt.slice(11, 16) + 'AM'}
+                    </p>
+                    <p className="flex">
+                      <MdUpdate className="text-2xl" /> {event.period} mins
+                    </p>
+                  </span>
+
+                  {/* Conditional Button */}
+                  <span className="flex h-full bg-blue min-w-fit text-xl font-semibold align-middle items-center">
+                    {event.status === 'active' && (
+                      <a href={`${sessionUrl}/${event.sessionId}`} target="_blank" rel="noreferrer">
+                        Join Session
+                      </a>
+                    )}
+                    {event.status === 'upcoming' && (
+                      <button className="interested-button">
+                        I'm Interested
+                      </button>
+                    )}
+                  </span>
                 </div>
-              )})
-            }</div>
-        }</div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Skilldev
+export default Skilldev;
