@@ -1,170 +1,178 @@
+.input-group input{    padding: 10px;
+  margin-bottom: 10px;}
 
+.button-container, .google-btn, .linkedin-btn {
+  margin-left: 15px;}
 
-   .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-  }
-  
-  .info-section {
-    width: 40%;
-    padding: 50px;
-    text-align: center;
-    background-color: #f0e3e3;
-    font-family: 'Arial', 'sans-serif';
-    color: rgb(17, 16, 16);
-    height: 75vh;
-    border-radius: 10px 0 0 10px;
-    margin-top: 70px;
-  }
-  
-  .info-section h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    color: #b56060;
-  }
-
-  .info-subtitle {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 15px;
-  color: #c79898;
-  letter-spacing: 1px;
+.signup-link{
+  margin-left: 100px;
 }
 
-  
-  .info-section p {
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-  
-  .login-form-container {
-    width: 40%;
-    padding: 30px;
-    background-color: white;
-    height: 75vh;
-    border-radius: 0 10px 10px 0;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 70px;
-  }
-  
-  .login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  .login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
 
-  .login-form h2{
-    padding-bottom: 15px;
-    font-weight: bold;
-    font-size: large;
-    color: #88141c;
-  }
-  
-  .input-group {
-    /* margin-bottom: 15px; */
-    width: 100%;
-  }
-  
-  .input-group input {
-    width: 100%;
-    /* padding-bottom: 10px; */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size:  1rem;
-  }
-  
-  .login-btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #b10009e0;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .login-btn:hover {
-    background-color: #8a0007; /* Darker shade on hover */
-    transform: scale(1.05); /* Slight pop effect */
-  }
-  
-  
-  .social-login {
-    margin-top: 15px;
-    display: flex;
-    gap: 10px;
-  }
-  
-  .button-container {
-    display: flex;
-    gap: 10px; /* Space between the buttons */
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .google-btn, .linkedin-btn {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    width: auto; /* Allow buttons to be their natural width */
-    justify-content: center;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .google-btn:hover {
-    background-color: #f8f8f8; /* Light grey background on hover */
-    border-color: #88141c; /* Google red */
-    transform: scale(1.05);
-  }
-  
-  .linkedin-btn:hover {
-    background-color: #f8f8f8; /* Light grey background on hover */
-    border-color: #88141c; 
-    transform: scale(1.05);
-  }
-  
-  .google-btn img, .linkedin-btn img {
-    width: 20px;
-    margin-right: 10px;
-  }
-  
-  
-  .signup-link {
-    margin-top: 15px;
-    font-size: 1rem;
-  }
-  
-  .signup-link a {
-    color: #a00c11;
-    text-decoration: none;
-  }
-  
-  .login-form .forgot-password {
-    color: #a15c5c;
-    text-decoration: none;
-    font-size: 0.9rem;
-    padding-left: 150px;
-  }
-  
-  .login-form .forgot-password:hover {
-    text-decoration: underline;
-  }
+.info-section {
+  width: 40%;
+  padding: 50px;
+  text-align: center;
+  background-color: #f0e3e3;
+  font-family: 'Arial', 'sans-serif';
+  color: rgb(17, 16, 16);
+  height: 75vh;
+  border-radius: 10px 0 0 10px;
+  margin-top: 70px;
+}
 
-  .login-form .options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 1rem 0;
-  }
+.info-section h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  color: #b56060;
+}
+
+.info-subtitle {
+font-size: 1.2rem;
+font-weight: 600;
+margin-bottom: 15px;
+color: #c79898;
+letter-spacing: 1px;
+}
+
+
+.info-section p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.login-form-container {
+  width: 40%;
+  padding: 30px;
+  background-color: white;
+  height: 75vh;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 70px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-form h2{
+  padding-bottom: 15px;
+  font-weight: bold;
+  font-size: large;
+  color: #88141c;
+}
+
+.input-group {
+  /* margin-bottom: 15px; */
+  width: 100%;
+}
+
+.input-group input {
+  width: 100%;
+  /* padding-bottom: 10px; */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size:  1rem;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #b10009e0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-btn:hover {
+  background-color: #8a0007; /* Darker shade on hover */
+  transform: scale(1.05); /* Slight pop effect */
+}
+
+
+.social-login {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px; /* Space between the buttons */
+  justify-content: center;
+  align-items: center;
+}
+
+.google-btn, .linkedin-btn {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: auto; /* Allow buttons to be their natural width */
+  justify-content: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.google-btn:hover {
+  background-color: #f8f8f8; /* Light grey background on hover */
+  border-color: #88141c; /* Google red */
+  transform: scale(1.05);
+}
+
+.linkedin-btn:hover {
+  background-color: #f8f8f8; /* Light grey background on hover */
+  border-color: #88141c; 
+  transform: scale(1.05);
+}
+
+.google-btn img, .linkedin-btn img {
+  width: 20px;
+  margin-right: 10px;
+}
+
+
+.signup-link {
+  margin-top: 15px;
+  font-size: 1rem;
+}
+
+.signup-link a {
+  color: #a00c11;
+  text-decoration: none;
+}
+
+.login-form .forgot-password {
+  color: #a15c5c;
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding-left: 150px;
+}
+
+.login-form .forgot-password:hover {
+  text-decoration: underline;
+}
+
+.login-form .options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+}

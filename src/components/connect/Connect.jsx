@@ -49,13 +49,13 @@ function Connect() {
       {!showPosts && reciever !== null && <ChatSpace reciever={reciever} id={reciever._id} sender={sender} setShowPosts={setShowPosts}/>}
       {showPosts && <><Posts/></>}
       <div className="w-3/12 bg-white relative">
-        <button onClick={() => setShowList(!showList)} className='text-4xl absolute bottom-10 right-5'><MdAddComment/></button>
+        <button onClick={() => setShowList(!showList)} className='text-4xl absolute bottom-5 right-5 text-green-400'><MdAddComment/></button>
       {
         showList ? 
         <input type="search" placeholder='Search by name'/>
         :
         <div className="userList"><br />
-          <input type="search" className='searchUserChat' placeholder='Search by name' onChange={(e) => {filterProf(e.target.value)}}/>
+          <input type="search" className='searchUserChat ml-5 p-2' placeholder='Search' onChange={(e) => {filterProf(e.target.value)}}/>
           <div className="userChatList flex flex-col gap-2">{
             filterUserList.map((user, key) => 
               <div className="flex gap-2" key={key} onClick={() => {setReciever(user); setShowPosts(false)}}>
