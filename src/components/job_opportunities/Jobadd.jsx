@@ -35,9 +35,6 @@ const Jobadd = () => {
     setSkills(skills.filter((_, i) => i !== index));
   };
 
-  const removeLocation = (index) => {
-    setLocations(location.filter((_, i) => i !== index));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
