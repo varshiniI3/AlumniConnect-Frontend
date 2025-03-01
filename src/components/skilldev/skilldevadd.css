@@ -1,0 +1,93 @@
+.job-form-container {
+  width: 70%;
+  /* margin: auto; */
+  margin-top: 5%;
+  margin-left: 15%;
+  margin-right: 15%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+h4 {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: rgb(196, 100, 100);
+}
+hr{
+  width: 75%;
+  margin: 10px auto 20px;
+  border: none;
+  height: 2px;
+  background: rgb(214, 115, 115);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.two-columns {
+  display: flex;
+  gap: 10px;
+}
+
+.three-columns {
+  display: flex;
+  gap: 10px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+textarea {
+  resize: none;
+}
+
+.location-input, .skills-input {
+  display: flex;
+  gap: 10px;
+}
+
+.location-tag, .skill-tag {
+  display: inline-flex;
+  align-items: center;
+  background: #e7abab;
+  color: #f9f9f9;
+  padding: 5px 10px;
+  border-radius: 8px;
+  margin: 5px;
+}
+
+.location-tag button, .skill-tag button {
+  background: #e7abab;
+  color: #b43b3b;
+  border: none;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.apply-button {
+  width: 80%;
+  margin-left: 10%;
+  background-color: #c00000;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.apply-button:hover {
+  background-color: #a00000;
+transform: scale(1.05);
+}

@@ -21,7 +21,7 @@ h3{
 }
 .search-bar {
   display: flex;
-  margin-top: 50px;
+  margin-top: 30px;
   margin-left: 35%;
   align-items: center; /* Align items vertically in the center */
   gap: 8px; /* Space between the icon and the input field */

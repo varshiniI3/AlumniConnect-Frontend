@@ -49,7 +49,7 @@ function ChatSpace({reciever, id, sender, setShowPosts}) {
 
   return (
     <div className='chatspace w-9/12 relative border-solid h-screen mt-1 pr-2'>
-      <span className="flex fixed justify-between w-9/12 p-2 z-20 bg-gray-500">
+      <span className="flex fixed justify-between w-9/12 p-2 z-20 bg-gray-500 border-r-black border-r-2">
         <span className='flex gap-5'>       
           <img src={reciever.imageUrl} alt="user" className="w-12 h-12 rounded-full"/>
           <center><h1 className='font-semibold text-3xl'>{reciever.name}</h1></center>   

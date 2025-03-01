@@ -22,12 +22,12 @@ function Login() {
         if(remember){
           Cookies.set('email', email, {expires: 1})
           Cookies.set('role', result.data.role, {expires: 1})
-          Cookies.set('id', result.data._id, {expires: 1})
+          Cookies.set('_id', result.data._id, {expires: 1})
         }
         else{
           Cookies.set('email', email, {expires: 7})
           Cookies.set('role', result.data.role, {expires: 7})
-          Cookies.set('id', result.data._id, {expires: 7})
+          Cookies.set('_id', result.data._id, {expires: 7})
         }
         navigate('/')
       }

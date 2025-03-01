@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './events.css';
 import Navbar from '../home/Navbar';
 
 function Events() {
   const [showUpcoming, setShowUpcoming] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [imgIdx, setImgIdx] = useState(0)
 
-  const upcomingEvents = [
+  setInterval(() => {setImgIdx(imgIdx + 1)}, 5000)
+  
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/offevent/getOffEvents`);
+        setUpcomingEvents(response.data.filter(event => new Date(event.date).getTime() >= Date.now()));
+        setCompletedEvents(response.data.filter(event => new Date(event.date).getTime() < Date.now()))
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    }
+    fetchEvents();
+  }, [])
+
+  const [upcomingEvents, setUpcomingEvents] = useState([
     {
       title: "Graduation Day 2025",
       date: "2025-04-15",
@@ -29,9 +45,9 @@ function Events() {
       image:
         "https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?cs=srgb&dl=pexels-pixabay-267885.jpg&fm=jpg",
     },
-  ];
+  ])
 
-  const completedEvents = [
+  const [completedEvents, setCompletedEvents] = useState([
     {
       title: "Alumni Reunion 2024",
       date: "2024-10-15",
@@ -49,7 +65,7 @@ function Events() {
       image:
         "https://jindal.utdallas.edu/files/2024/05/hero-image-alum.jpg",
     },
-  ];
+  ])
 
   const eventsToDisplay = showUpcoming ? upcomingEvents : completedEvents;
 
@@ -121,7 +137,7 @@ function Events() {
             >
               <div className="event-image md:w-1/2">
                 <img
-                  src={event.image}
+                  src={event.images && event.images[imgIdx % event.images.length]}
                   alt={event.title}
                   className="rounded-t-lg md:rounded-r-lg md:rounded-tl-none w-full h-full object-cover"
                 />
@@ -131,7 +147,7 @@ function Events() {
                   {highlightText(event.title)}
                 </h3>
                 <p className="text-gray-500 mb-4">
-                  {highlightText(event.date)} {event.time ? `| ${highlightText(event.time)}` : ''}
+                  {highlightText(event.date.substr(0, 10))} {event.time ? `| ${highlightText(event.time)}` : ''}
                 </p>
                 <p className="text-gray-700 mb-4">{highlightText(event.description)}</p>
                 {event.location && (
@@ -144,7 +160,7 @@ function Events() {
                     ))}
                   </ul>
                 )}
-                {event.feedback && <p className="text-gray-700 mb-4">{highlightText(event.feedback)}</p>}
+                {event.feedback!=='...' && <p className="text-gray-700 mb-4">{highlightText(event.feedback)}</p>}
                 {event.coordinator && (
                   <div className="text-gray-700 mb-4">
                     <p>

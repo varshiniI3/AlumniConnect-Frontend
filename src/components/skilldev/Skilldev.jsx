@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './skilldev.css';
 import Navbar from '../home/Navbar';
-import { PiChalkboardTeacherDuotone } from "react-icons/pi";
 import { MdDateRange, MdUpdate } from "react-icons/md";
 import axios from 'axios';
 
@@ -15,62 +14,12 @@ function Skilldev() {
   const [searchTerm, setSearchTerm] = useState('');
   const sessionUrl = process.env.REACT_APP_SESSION_URL;
 
-  // Dummy events data
-  const dummyEventsData = [
-    {
-      title: "React Webinar",
-      type: "Webinar",
-      status: "upcoming",
-      hostName: "John Doe",
-      description: "An informative webinar on React for beginners.",
-      scheduledAt: "2025-02-20T10:00:00",
-      period: 60,
-      sessionId: "123abc",
-    },
-    {
-      title: "MERN Stack Workshop",
-      type: "Workshop",
-      status: "active",
-      hostName: "Jane Smith",
-      description: "Hands-on workshop for building full-stack apps with MERN.",
-      scheduledAt: "2025-02-10T14:00:00",
-      period: 120,
-      sessionId: "456def",
-    },
-    {
-      title: "Mock Interview for Web Developers",
-      type: "Mock Interview",
-      status: "past",
-      hostName: "Bob Johnson",
-      description: "Prepare for your next interview with a mock session.",
-      scheduledAt: "2025-01-15T10:00:00",
-      period: 90,
-      sessionId: "789ghi",
-    },
-    {
-      title: "Node.js Masterclass",
-      type: "Webinar",
-      status: "active",
-      hostName: "Alice Cooper",
-      description: "Advanced Node.js concepts for experienced developers.",
-      scheduledAt: "2025-02-12T18:00:00",
-      period: 75,
-      sessionId: "101112jkl",
-    },
-    {
-      title: "Frontend Development Bootcamp",
-      type: "Workshop",
-      status: "upcoming",
-      hostName: "Charlie Brown",
-      description: "Intensive bootcamp to become proficient in frontend development.",
-      scheduledAt: "2025-02-18T09:00:00",
-      period: 180,
-      sessionId: "131415mno",
-    },
-  ];
-
   useEffect(() => {
-    setTotEvents(dummyEventsData);
+    const getEvents = async () => {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/event/getEvents`);      
+      setTotEvents(response.data);
+    }
+    getEvents()
   }, []);
 
   useEffect(() => {
@@ -181,9 +130,6 @@ function Skilldev() {
             <button onClick={handleResetFilters}>Reset Filters</button>
           </div>
         </div>
-
-        
-
         {/* Event Cards Section */}
         <div className="eventHolder">
           {/* Search Bar - Moved inside eventHolder */}

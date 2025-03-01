@@ -41,6 +41,7 @@
 
 .filter-group input {
   margin-right: 8px;
+  width: fit-content;
 }
 
 .eventHolder {

@@ -1,6 +1,7 @@
 import React, { useState ,useEffect} from "react";
 import "./jobs.css";
 import Navbar from '../home/Navbar';
+import axios from 'axios';
 import { FaSearch } from "react-icons/fa";
 
 
@@ -15,6 +16,7 @@ const Jobs = () => {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [jobs, setJobs] = useState([])
 
   const [showFilterCategory, setShowFilterCategory] = useState({
     status: false,
@@ -25,52 +27,21 @@ const Jobs = () => {
   });
 
   useEffect(() => {
+    const getJobs = async () => {
+    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/jobs/getJobs`)
+      setJobs(response.data.jobs)
+    }
+    getJobs()
     const timer = setInterval(() => setCurrentDate(new Date()), 60000);
     return () => clearInterval(timer);
   }, []);
 
-  // const [jobs, setJobs] = useState([
-  const jobs = [
-    {
-      id: 1,
-      role: "Frontend Developer",
-      company: "TechCorp",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      status: "Applied",
-      experience: "Fresher",
-      jobType: "Full Time",
-      ctc: "6LPA",
-      location: "Hyderabad",
-      skills: ["React", "JavaScript", "CSS"],
-      deadline: "2025-03-01",
-    },
-    {
-      id: 2,
-      role: "Backend Developer",
-      company: "InnovateSoft",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      status: "Not Applied",
-      experience: "1-2 years",
-      jobType: "Internship",
-      ctc: "4LPA",
-      location: "Mumbai",
-      skills: ["Node.js", "Express", "MongoDB"],
-      deadline: "2024-12-31",
-    },
-    {
-      id: 3,
-      role: "Full Stack Developer",
-      company: "Buildify",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      status: "Applied",
-      experience: "5+ years",
-      jobType: "Full Time",
-      ctc: "12LPA",
-      location: "Remote",
-      skills: ["React", "Node.js", "GraphQL"],
-      deadline: "",
-    },
-  ];
+  const applyAction = async (job) => {
+    window.open(`${job.applyLink}`, '_blank')
+    job.isApplied = true
+    await axios.patch(`${process.env.REACT_APP_BASE_URL}/jobs/toggleStatus`, {id: job._id})
+    window.location.reload()
+  }
 
   const toggleFilterCategory = (category) => {
     setShowFilterCategory((prev) => ({
@@ -89,9 +60,9 @@ const Jobs = () => {
     });
   };
 
-  const isDeadlineOpen = (deadline) => {
-    if (!deadline) return true; // Consider jobs with no deadline as open
-    const deadlineDate = new Date(deadline);
+  const isDeadlineOpen = (applyBefore) => {
+    if (!applyBefore) return true; // Consider jobs with no applyBefore as open
+    const deadlineDate = new Date(applyBefore);
     return currentDate <= deadlineDate;
   };
 
@@ -342,11 +313,10 @@ const Jobs = () => {
             <div className="job-card" key={job.id}>
               <div className="job-card-header">
                 <h3>{job.role}</h3>
-            
-                <button>Apply</button>
+                <button onClick={()=>applyAction(job)}>Apply</button>
               </div>
               <div className="badge_1">
-              {isDeadlineOpen(job.deadline) ? (
+              {isDeadlineOpen(job.applyBefore) ? (
                 <span className="open-badge">Open</span>
               ) : (
                 <span className="closed-badge">Closed</span>
@@ -355,10 +325,10 @@ const Jobs = () => {
               <div className="job-details">
                 <p><strong>Company:</strong> {job.company}</p>
                 <p><strong>Description:</strong> {job.description}</p>
-                <p><strong>Status:</strong> {job.status}</p>
-                <p><strong>Experience:</strong> {job.experience}</p>
+                <p><strong>Status:</strong> {job.isApplied ? 'Seen': 'Unseen'}</p>
+                <p><strong>Experience:</strong> {job.experienceRange.from} - {job.experienceRange.to} Years</p>
                 <p><strong>Job Type:</strong> {job.jobType}</p>
-                <p><strong>CTC:</strong> {job.ctc}</p>
+                <p><strong>CTC:</strong> {job.salaryRange.from} - {job.salaryRange.to} LPA</p>
                 <p><strong>Location:</strong><span className="badge">{job.location}</span></p>
                 <div className="skills_loc">
                   <strong>Skills:</strong> {job.skills.map(skill => (

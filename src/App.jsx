@@ -11,6 +11,9 @@ import Events from './components/events/Events';
 import Jobs from './components/job_opportunities/Jobs';
 import Connect from './components/connect/Connect';
 import PrivacyPolicy from './components/privacyPolicy/PrivacyPolicy';
+import SkillDevAdd from './components/skilldev/SkillDevAdd';
+import Eventadd from './components/events/Eventadd';
+import Jobadd from './components/job_opportunities/Jobadd';
 
 function App() {
   const email = Cookies.get('email') || null
@@ -20,11 +23,14 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/login' element={<Login/>} />
-        <Route path='/skilldev' element={<Skilldev/>} />
         <Route path='/signup' element={<Signup/>} />
         <Route path='/events' element={<Events/>} />
-        <Route path='/connect' element={<Connect/>} />
+        <Route path='/skilldev' element={<Skilldev/>} />
         <Route path='/jobOpportunities' element={<Jobs/>} />
+        <Route path='/add/events' element={<Eventadd/>} />
+        <Route path='/add/skilldev' element={<SkillDevAdd/>} />
+        <Route path='/add/jobOpportunities' element={<Jobadd/>} />
+        <Route path='/connect' element={<Connect/>} />
         <Route path='/privacypolicy' element={<PrivacyPolicy/>} />
         <Route path='/profile' element={email === null ? <Login/> : <Profile/>} />
         <Route path='*' element={<PageNotFound/>} />
