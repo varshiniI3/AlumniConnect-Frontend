@@ -326,7 +326,7 @@ const Jobs = () => {
                 <p><strong>Company:</strong> {job.company}</p>
                 <p><strong>Description:</strong> {job.description}</p>
                 <p><strong>Status:</strong> {job.isApplied ? 'Seen': 'Unseen'}</p>
-                <p><strong>Experience:</strong> {job.experienceRange.from} - {job.experienceRange.to} Years</p>
+                <p><strong>Experience:</strong> {job.experience}</p>
                 <p><strong>Job Type:</strong> {job.jobType}</p>
                 <p><strong>CTC:</strong> {job.salaryRange.from} - {job.salaryRange.to} LPA</p>
                 <p><strong>Location:</strong><span className="badge">{job.location}</span></p>
