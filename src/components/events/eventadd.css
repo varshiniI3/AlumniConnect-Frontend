@@ -1,6 +1,5 @@
 .job-form-container {
   width: 70%;
-  /* margin: auto; */
   margin-top: 15px;
   margin-left: 15%;
   margin-right: 15%;
@@ -11,13 +10,14 @@
   font-family: Arial, sans-serif;
 }
 
-h4 {
+.job-form-container h4 {
   text-align: center;
   font-weight: bold;
   margin-bottom: 20px;
   color: rgb(196, 100, 100);
 }
-hr{
+
+.job-form-container hr{
   width: 75%;
   margin: 10px auto 20px;
   border: none;
@@ -39,7 +39,7 @@ hr{
   gap: 10px;
 }
 
-input, select, textarea {
+.form-group input, select, textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -47,31 +47,8 @@ input, select, textarea {
   font-size: 14px;
 }
 
-textarea {
+.form-group textarea {
   resize: none;
-}
-
-.location-input, .skills-input {
-  display: flex;
-  gap: 10px;
-}
-
-.location-tag, .skill-tag {
-  display: inline-flex;
-  align-items: center;
-  background: #e7abab;
-  color: #f9f9f9;
-  padding: 5px 10px;
-  border-radius: 8px;
-  margin: 5px;
-}
-
-.location-tag button, .skill-tag button {
-  background: #e7abab;
-  color: #b43b3b;
-  border: none;
-  margin-left: 10px;
-  cursor: pointer;
 }
 
 .apply-button {
@@ -100,8 +77,8 @@ transform: scale(1.05);
 
 .row label {
   white-space: nowrap; /* Prevent label from wrapping */
-  /* font-weight: bold; */
 }
+
 /* Style for the Event Highlights section */
 .event-highlights-container h4 {
   font-size: 1.2rem;
