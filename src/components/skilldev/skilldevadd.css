@@ -11,13 +11,14 @@
   font-family: Arial, sans-serif;
 }
 
-h4 {
+.job-form-container h4 {
   text-align: center;
   font-weight: bold;
   margin-bottom: 20px;
   color: rgb(196, 100, 100);
 }
-hr{
+
+.job-form-container hr{
   width: 75%;
   margin: 10px auto 20px;
   border: none;
@@ -39,7 +40,7 @@ hr{
   gap: 10px;
 }
 
-input, select, textarea {
+.form-group  input, select, textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -47,7 +48,7 @@ input, select, textarea {
   font-size: 14px;
 }
 
-textarea {
+.form-group  textarea {
   resize: none;
 }
 
