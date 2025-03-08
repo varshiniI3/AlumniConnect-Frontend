@@ -1,42 +1,197 @@
+
+/* Scope styles to signup page only */
+
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1; /* Puts video behind content */
+}
+
+video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures video covers entire screen */
+}
+
 .signup {
-    height: 100vh;
-    width: 100vw;
-    background-color: white;
-}
-.signup .formHolder{
-    background: white;
-    padding: 15px;
-    font-size: larger;
-}
-
-.signup input, .signup select{
-    background: #33333324;
-      border-radius: 10px;
-    &:disabled{
-        background: none;
-    }
-    &::placeholder{
-        color : rgba(0, 0, 0, 0.589)
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    /* background: rgba(87, 42, 42, 0.98);  */
+    padding: 20px;
 }
 
-.signup button{
-        background-color: #b72d23;
-    border: none;
-    border-radius: 10px;
-    color: #fff;
-    cursor: pointer;
-    padding: 8px 12px;
-    margin-top:10px;
-transition: .2s ;
-     &:hover{
-        transform: translateY(-10px);
-        transform: scale(1.12);
-    }
+/* Form container */
+.signup .formHolder {
+    /* background-color: #f1f1f1; */
+    background: rgba(218, 178, 178, 0.7);
+    /* background-color: transparent; */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 6px 15px rgba(12, 3, 3, 0.3);
+    max-width: 900px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    /* New styles for height adjustment */
+    min-height: calc(100vh - 40px); /* Full screen height minus margins */
+    margin: 20px auto;
+   
 }
 
-.signup input, .signup label, .signup select{
-    margin: 5px;
+/* Form (Left Side) */
+.signup .form-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Form Group */
+/* .signup .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 50px;
+} */
+
+/* Labels */
+
+
+.signup .formHolder label{
+    font-weight: bold;
+    /* color: #f9f9f9; */
+    /* color: #a00000; */
+    font-size: 15px;
+    margin-bottom: 20px;
+    /* margin-right: 20px; */
+}
+
+/* Input Fields & Select Dropdown */
+.signup .formHolder input,
+.signup .formHolder select {
+    width: 100%;
     padding: 5px;
-    color: black;
+    background: rgba(218, 178, 178, 0.4);
+    border: 1px solid #934848;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+}
+
+.signup .formHolder input:focus,
+.signup .formHolder select:focus {
+    border-color: #3b1718;
+    box-shadow: 0px 0px 10px rgba(162, 75, 75, 0.5);
+    outline: none;
+}
+
+.signup .formHolder ::placeholder{
+    color: #1a1414;
+}
+
+
+
+/* Profile Upload (Right Side) */
+.signup .profile-container {
+    flex: 0.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Profile Image */
+.signup .profile-container img {
+    width: 150px !important;
+    height: 150px !important;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #a24b4b;
+    display: block;
+    /* transition: all 0.3s ease-in-out; */
+}
+
+.signup .profile-container img:hover {
+    border-color: #813d3d;
+    transform: scale(1.05);
+}
+
+/* Upload Button */
+.signup .profile-container label {
+    background: #a24b4b;
+    /* color: white; */
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.signup .profile-container label:hover {
+    background: #813d3e;
+}
+
+/* Submit Button */
+.signup button {
+    width: 100%;
+    background-color: #c00000;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.signup button:hover {
+    background-color: #a00000;
+    transform: scale(1.05);
+}
+
+.signup button:active {
+    transform: scale(0.98);
+}
+
+/* Password Visibility Toggle */
+.signup .relative {
+    position: relative;
+    width: 100%;
+}
+
+.signup .relative input {
+    width: 100%;
+    padding-right: 40px; /* Space for the eye icon */
+}
+
+.signup .relative span {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #a24b4b;
+    transition: 0.3s ease;
+}
+
+.signup .relative span:hover {
+    color: #813d40;
 }
