@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './home.css';
+import axios from 'axios'
 import { FaSquareXTwitter, FaSquareInstagram, FaLinkedin } from "react-icons/fa6";
 import Navbar from './Navbar';
 import { Carousel } from 'react-responsive-carousel'; // New slider import
@@ -7,12 +8,19 @@ import { Link } from 'react-router-dom'; // Import Link for navigation
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel styles
 
 function Home() {
-  const alumni = [
+  const [alumni, setAlumni] = useState([
     {sno: "1", name: "John", designation: "Software Developer", location: 'Los Angeles', imageURL: 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'},
     {sno: "2", name: "Jane", designation: "Product Manager", location: 'New York', imageURL: 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'},
     {sno: "3", name: "Alex", designation: "UI/UX Designer", location: 'San Francisco', imageURL: 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'},
     // additional alumni...
-  ];
+  ]);
+  useEffect(()=>{
+    const getAlumni  = async () => {
+      const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user/getUsers`)
+      setAlumni(res.data.users)
+    }
+    getAlumni()
+  }, [])
 
   const eventPics = [
     {imgUrl: 'https://media.istockphoto.com/id/1486287149/photo/group-of-multiracial-asian-business-participants-casual-chat-after-successful-conference-event.jpg?s=612x612&w=0&k=20&c=aWW3omXKHjxBkd58NouVo8GsapvA2KXO9RwuokHhvFk=', type: 'Event Type'},
@@ -54,12 +62,12 @@ function Home() {
       <div className="userCardHolder mt-10">
         {alumni.map((user, key) => (
           <div key={key} className={`userCard bg-white shadow-md rounded-lg p-4 ${key % 2 === 0 ? 'left' : 'right'}`}>
-            <center><img src={user.imageURL} alt="user" className="rounded-full w-24 h-24" /></center>
+            <center><img src={user.imageUrl} alt="user" className="rounded-full w-24 h-24" /></center>
             <b className="block mt-3 text-lg">{user.name}</b>
             <p>{user.designation}</p>
             <p>{user.location}</p>
             <center>
-              <button className="p-2 rounded-lg mt-2 bg-red-950 hover:bg-red-700 text-white transition-all">
+              <button className="p-2 rounded-lg mt-1 bg-red-950 hover:bg-red-700 text-white transition-all">
                 View Profile
               </button>
             </center>

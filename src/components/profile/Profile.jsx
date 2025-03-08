@@ -49,7 +49,7 @@ function Profile() {
   const profilePicUpload = async (e) => {
     e.preventDefault()
     try {
-      axios.post(`${process.env.REACT_APP_BASE_URL}/user/profilepicUpload`, {uname: userProf.username, file: file}, {
+      axios.post(`${process.env.REACT_APP_BASE_URL}/user/profilepicUpload`, {uname: userProf.name, file: file}, {
         headers : { 'Content-Type' : 'multipart/form-data', },
       })
       alert('Profile image updated successfully')
@@ -92,10 +92,13 @@ function Profile() {
         </span>
         <div className='flex flex-col w-4/6 gap-10'>
           <div className='userDetailsCard w-5/6 text-2xl flex'>
-            <span className='w-1/3 flex-col gap-4 flex font-semibold'>
-              <p>Name</p><hr />
-              <p>Email</p><hr />
-              <p>Roll number</p><hr />
+            <span className='w-1/3 flex-col gap-9 flex font-semibold'>
+              <p>Name</p> 
+              {/* <hr /> */}
+              <p>Email</p>
+              {/* <hr /> */}
+              <p>Roll number</p>
+              {/* <hr /> */}
               { userProf.role === 'alumni' && <><p>Branch</p><hr/></>}
               { userProf.role === 'alumni' && <><p>Y.O.P</p><hr/></>}
               { userProf.role === 'alumni' && <><p>Company</p><hr/></>}
@@ -103,9 +106,12 @@ function Profile() {
               <p>Role</p>
             </span>
             <form className='flex-col gap-4 flex w-full relative' onSubmit={handleUserUpdateSubmit}>
-              <input type="text" value={userProf.name} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,name: e.target.value}))}/><hr/>
-              <input type="text" value={userProf.email} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,email: e.target.value}))}/><hr/>
-              <input type="text" value={userProf.regId} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,regId: e.target.value}))}/><hr/>
+              <input type="text" value={userProf.name} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,name: e.target.value}))}/> 
+              {/* <hr/> */}
+              <input type="text" value={userProf.email} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,email: e.target.value}))}/>
+              {/* <hr/> */}
+              <input type="text" value={userProf.regId} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,regId: e.target.value}))}/>
+              {/* <hr/> */}
               { userProf.role === 'alumni' && <><input type="text" value={userProf.branch} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,branch: e.target.value}))}/><hr/></>}
               { userProf.role === 'alumni' && <><input type="number" value={userProf.yop} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,yop: e.target.value}))}/><hr/></>}
               { userProf.role === 'alumni' && <><input type="text" value={userProf.company} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,company: e.target.value}))}/><hr/></>}
@@ -114,16 +120,7 @@ function Profile() {
               <button type='submit' className='absolute bottom-1 right-1' onClick={()=>setIsEdit(!isEdit)}>{isEdit ? <FaSave /> : <FaEdit/> }</button>
             </form>
           </div>
-          <div className='w-5/6 rounded-2xl p-5'>
-            <h1 className='text-2xl mb-5 font-bold'>Skills</h1>
-            <span className="badgeHolder gap-5">
-              {
-                userProf.skills.split(",").map((skill, index) => 
-                  <span key={index} className='bg-gray-300 p-3 rounded-full'>{skill}</span>
-                )
-              }
-            </span>
-          </div>
+          x
           <div className='w-5/6 rounded-2xl p-5'>
             <h1 className='text-2xl mb-5 font-bold'>About</h1>
             <span className="badgeHolder gap-5">
