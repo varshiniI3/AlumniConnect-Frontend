@@ -17,7 +17,7 @@ function Home() {
   useEffect(()=>{
     const getAlumni  = async () => {
       const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user/getUsers`)
-      setAlumni(res.data.users)
+      setAlumni(res.data.users.slice(0, 3))
     }
     getAlumni()
   }, [])
