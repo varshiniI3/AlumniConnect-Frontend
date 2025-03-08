@@ -8,9 +8,10 @@ import Silver from '../../assets/as.png'
 import Gold from '../../assets/ag.png'
 import axios from 'axios'
 
-function Profile() {
+function Profile({mail}) {
   const [isEdit, setIsEdit] = useState(false)
   const cookieEmail = Cookies.get('email')
+  const email = mail || cookieEmail
   const [userProf, setUserProf] = useState()
   const [isPicUpdt, setIsPicUpdt] = useState(false)
   const [file, setFile] = useState(null)
@@ -22,7 +23,7 @@ function Profile() {
   useEffect(()=>{
     const getProfile = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user/profile/${cookieEmail}`)
+        const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user/profile/${email}`)
         setUserProf(res.data)
       } catch (error) {
         console.log(error)
@@ -105,7 +106,7 @@ function Profile() {
               { userProf.role === 'alumni' && <><p>Designation</p><hr/></>}
               <p>Role</p>
             </span>
-            <form className='flex-col gap-4 flex w-full relative' onSubmit={handleUserUpdateSubmit}>
+            <form className='flex-col gap-8 flex w-full relative' onSubmit={handleUserUpdateSubmit}>
               <input type="text" value={userProf.name} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,name: e.target.value}))}/> 
               {/* <hr/> */}
               <input type="text" value={userProf.email} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,email: e.target.value}))}/>
@@ -120,7 +121,6 @@ function Profile() {
               <button type='submit' className='absolute bottom-1 right-1' onClick={()=>setIsEdit(!isEdit)}>{isEdit ? <FaSave /> : <FaEdit/> }</button>
             </form>
           </div>
-          x
           <div className='w-5/6 rounded-2xl p-5'>
             <h1 className='text-2xl mb-5 font-bold'>About</h1>
             <span className="badgeHolder gap-5">
