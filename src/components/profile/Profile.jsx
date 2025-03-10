@@ -125,7 +125,7 @@ function Profile() {
               { userProf.role === 'alumni' && <><input type="text" value={userProf.company} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,company: e.target.value}))}/><hr/></>}
               { userProf.role === 'alumni' && <><input type="text" value={userProf.designation} disabled={!isEdit} onChange={(e) => setUserProf(() => ({...userProf,designation: e.target.value}))}/><hr/></>}
               <p className='first-letter:uppercase pl-3'>{userProf.role}</p>
-              <button type='submit' className='absolute bottom-1 right-1' onClick={()=>setIsEdit(!isEdit)}>{isEdit ? <FaSave /> : <FaEdit/> }</button>
+              {(userProf.email === cookieEmail || userProf.role === 'admin') && <button type='submit' className='absolute bottom-1 right-1' onClick={()=>setIsEdit(!isEdit)}>{isEdit ? <FaSave /> : <FaEdit/> }</button>}
             </form>
           </div>
           <div className='w-5/6 rounded-2xl p-5'>
