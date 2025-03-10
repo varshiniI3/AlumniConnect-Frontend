@@ -1,0 +1,167 @@
+/* Container Styling */
+.post-form-container {
+  width: 70%;
+  margin: auto;
+  margin-top: 15px;
+  padding: 25px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
+  font-family: Arial, sans-serif;
+  transition: 0.3s ease-in-out;
+}
+
+.post-form-container:hover {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Title Styling */
+h4 {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: rgb(196, 100, 100);
+  font-size: 22px;
+  text-transform: uppercase;
+}
+
+/* Section Title Styling */
+.preview-section h4 {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: rgb(196, 100, 100);
+  font-size: 20px;
+}
+
+hr {
+  width: 75%;
+  margin: 10px auto 20px;
+  border: none;
+  height: 3px;
+  background: rgb(214, 115, 115);
+  border-radius: 2px;
+}
+.row {
+  display: flex;
+  margin-bottom: 30px;
+  /* align-items: center; */
+  gap: 10px; /* Space between label and input */
+}
+
+.row label {
+  white-space: nowrap; /* Prevent label from wrapping */
+  /* font-weight: bold; */
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #333;
+  font-size: 16px;
+}
+
+/* Form Group */
+/* .form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #333;
+  font-size: 16px;
+} */
+
+/* Input & Textarea Styling */
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  background: white;
+}
+
+textarea {
+  resize: none;
+  min-height: 70px;
+}
+
+/* Focus Effect */
+input:focus, 
+textarea:focus {
+  border: 1.5px solid black;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Submit Button */
+.apply-button {
+  width: 80%;
+  margin-left: 10%;
+  background-color: #c00000;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+.apply-button:hover {
+  background-color: #a00000;
+  transform: scale(1.06);
+}
+
+/* Preview Section */
+.preview-section {
+  margin-top: 25px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+  transition: 0.3s ease-in-out;
+}
+
+.preview-section:hover {
+  box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Image Preview */
+.image-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 250px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-preview img:hover {
+  transform: scale(1.03);
+}
+
+/* Description Preview */
+.preview-description {
+  font-size: 15px;
+  color: #201515;
+  padding: 8px 12px;
+  background: #ffeeee;
+  border-radius: 8px;
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease-in-out;
+}
+
+.preview-description:hover {
+  background: #fcdede;
+}

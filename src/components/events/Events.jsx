@@ -23,49 +23,9 @@ function Events() {
     fetchEvents();
   }, [])
 
-  const [upcomingEvents, setUpcomingEvents] = useState([
-    {
-      title: "Graduation Day 2025",
-      date: "2025-04-15",
-      time: "10:00 AM - 2:00 PM",
-      description:
-        "Celebrate the accomplishments of our graduates in the grandest ceremony of the year. Join us as we honor the class of 2025, enjoy speeches, and cheer for the students stepping into the next chapter of their lives.",
-      location: "University Auditorium, New York City",
-      speaker: "Dr. Emma Green, Chancellor",
-      coordinator: {
-        name: "John Doe",
-        email: "johndoe@example.com",
-        phone: "+1 (123) 456-7890",
-      },
-      activities: [
-        "Keynote Speech by Dr. Emma Green",
-        "Award Ceremony for Top Achievers",
-        "Networking Lunch for Students and Guests",
-      ],
-      image:
-        "https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?cs=srgb&dl=pexels-pixabay-267885.jpg&fm=jpg",
-    },
-  ])
+  const [upcomingEvents, setUpcomingEvents] = useState([])
 
-  const [completedEvents, setCompletedEvents] = useState([
-    {
-      title: "Alumni Reunion 2024",
-      date: "2024-10-15",
-      description:
-        "A nostalgic evening filled with laughter, memories, and cherished moments. Alumni from various batches gathered to reconnect, share stories, and reminisce about their time at the university.",
-      location: "Main Hall, Downtown Campus",
-      highlights: [
-        "Cultural performances by current students",
-        "Keynote Address: 'Leadership and Legacy' by Dr. Samuel Harris",
-        "Interactive panel discussion: 'Alumni as Mentors'",
-        "Exclusive Gala Dinner and Networking Session",
-      ],
-      feedback:
-        "The Alumni Reunion was a tremendous success, with attendees praising the seamless organization and heartfelt connection fostered through the event. Many look forward to the next gathering!",
-      image:
-        "https://jindal.utdallas.edu/files/2024/05/hero-image-alum.jpg",
-    },
-  ])
+  const [completedEvents, setCompletedEvents] = useState([])
 
   const eventsToDisplay = showUpcoming ? upcomingEvents : completedEvents;
 

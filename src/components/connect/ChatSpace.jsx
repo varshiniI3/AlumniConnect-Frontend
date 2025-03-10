@@ -54,7 +54,7 @@ function ChatSpace({reciever, id, sender, setShowPosts}) {
           <img src={reciever.imageUrl} alt="user" className="w-12 h-12 rounded-full"/>
           <center><h1 className='font-semibold text-3xl'>{reciever.name}</h1></center>   
         </span>
-        <button className="absolute right-2 text-3xl" onClick={()=>{setShowPosts(true)}}><IoCloseCircleSharp /></button>
+        <button className="absolute right-2 text-3xl" onClick={()=>{setShowPosts(false)}}><IoCloseCircleSharp /></button>
       </span><br /><br /><br />
       <div className="msgHolder w-full flex flex-col gap-2 p-2 h-full">{
         chat.length > 0 && chat.map((msg, key) => 

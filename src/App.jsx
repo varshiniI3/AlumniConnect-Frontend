@@ -14,6 +14,7 @@ import PrivacyPolicy from './components/privacyPolicy/PrivacyPolicy';
 import SkillDevAdd from './components/skilldev/SkillDevAdd';
 import Eventadd from './components/events/Eventadd';
 import Jobadd from './components/job_opportunities/Jobadd';
+import Postadd from './components/connect/Postadd';
 
 function App() {
   const email = Cookies.get('email') || null
@@ -31,6 +32,7 @@ function App() {
         <Route path='/add/skilldev' element={<SkillDevAdd/>} />
         <Route path='/add/jobOpportunities' element={<Jobadd/>} />
         <Route path='/connect' element={<Connect/>} />
+        <Route path='/add/Post' element={<Postadd/>} />
         <Route path='/privacypolicy' element={<PrivacyPolicy/>} />
         <Route path='/profile' element={email === null ? <Login/> : <Profile/>} />
         <Route path='*' element={<PageNotFound/>} />

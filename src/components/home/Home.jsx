@@ -4,16 +4,12 @@ import axios from 'axios'
 import { FaSquareXTwitter, FaSquareInstagram, FaLinkedin } from "react-icons/fa6";
 import Navbar from './Navbar';
 import { Carousel } from 'react-responsive-carousel'; // New slider import
-import { Link } from 'react-router-dom'; // Import Link for navigation
+import { Link, useNavigate } from 'react-router-dom'; // Import Link for navigation
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel styles
 
 function Home() {
-  const [alumni, setAlumni] = useState([
-    {sno: "1", name: "John", designation: "Software Developer", location: 'Los Angeles', imageURL: 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'},
-    {sno: "2", name: "Jane", designation: "Product Manager", location: 'New York', imageURL: 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'},
-    {sno: "3", name: "Alex", designation: "UI/UX Designer", location: 'San Francisco', imageURL: 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=2460'},
-    // additional alumni...
-  ]);
+  const [alumni, setAlumni] = useState([]);
+  const navigate = useNavigate();
   useEffect(()=>{
     const getAlumni  = async () => {
       const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user/getUsers`)
@@ -67,7 +63,8 @@ function Home() {
             <p>{user.designation}</p>
             <p>{user.location}</p>
             <center>
-              <button className="p-2 rounded-lg mt-1 bg-red-950 hover:bg-red-700 text-white transition-all">
+              <button className="p-2 rounded-lg mt-1 bg-red-950 hover:bg-red-700 text-white transition-all"
+                onClick={() => navigate('profile',{state: {mail: user.email}})}>
                 View Profile
               </button>
             </center>
@@ -134,13 +131,13 @@ function Home() {
     <div className="footer-right">
       <h3 className="text-2xl font-semibold mb-4">Follow Us</h3>
       <div className="flex justify-center space-x-6 mb-4">
-        <a href="https://twitter.com" target="_blank" className="text-2xl text-gray-300 hover:text-white transition-all">
+        <a href="https://twitter.com" target="_blank" rel='noreferrer' className="text-2xl text-gray-300 hover:text-white transition-all">
           <FaSquareXTwitter />
         </a>
-        <a href="https://instagram.com" target="_blank" className="text-2xl text-gray-300 hover:text-white transition-all">
+        <a href="https://instagram.com" target="_blank" rel='noreferrer' className="text-2xl text-gray-300 hover:text-white transition-all">
           <FaSquareInstagram />
         </a>
-        <a href="https://linkedin.com" target="_blank" className="text-2xl text-gray-300 hover:text-white transition-all">
+        <a href="https://linkedin.com" target="_blank" rel='noreferrer' className="text-2xl text-gray-300 hover:text-white transition-all">
           <FaLinkedin />
         </a>
       </div>

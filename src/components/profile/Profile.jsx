@@ -7,14 +7,16 @@ import Bronze from '../../assets/ab.png'
 import Silver from '../../assets/as.png'
 import Gold from '../../assets/ag.png'
 import axios from 'axios'
+import { useLocation, useNavigate } from 'react-router-dom';
 
-function Profile({mail}) {
+function Profile() {
   const [isEdit, setIsEdit] = useState(false)
   const cookieEmail = Cookies.get('email')
-  const email = mail || cookieEmail
+  const email = useLocation().state?.mail || cookieEmail
   const [userProf, setUserProf] = useState()
   const [isPicUpdt, setIsPicUpdt] = useState(false)
   const [file, setFile] = useState(null)
+  const navigate = useNavigate()
 
   const posts = [
     {imgUrl: 'https://cdn.pixabay.com/photo/2016/07/07/16/46/dice-1502706_640.jpg', title: 'Webinar on React', date: '12/12/2021', time: '10:00 AM', desc: 'This is a webinar on React'},
@@ -30,7 +32,7 @@ function Profile({mail}) {
       }
     }
     getProfile()
-  }, [cookieEmail])
+  }, [email])
 
   const handleUserUpdateSubmit = async (e) => {
     e.preventDefault()
@@ -87,8 +89,13 @@ function Profile({mail}) {
             </span>
           }
           {
+            userProf.email !== cookieEmail && <img src={userProf.imageUrl} alt="user" className='w-72 h-72 rounded-full'/>
+          }
+          {
             userProf.email !== cookieEmail &&
-            <center><button className='m-3 pt-1 text-xl font-bold hover:bg-white duration-200 pb-1 p-3 border-solid border-black border-2'>Connect</button></center>
+            <center><button className='m-3 pt-1 text-xl font-bold hover:bg-white duration-200 pb-1 p-3 border-solid border-black border-2'
+              onClick={() => {navigate('/connect', {state: {showChat: true, reciever: userProf}})}}>Connect</button>
+            </center>
           }
         </span>
         <div className='flex flex-col w-4/6 gap-10'>
@@ -182,6 +189,13 @@ function Profile({mail}) {
           </span><br />
           <div className="flex justify-between"><a href="/connect">View all posts</a><a href="/connect">Add new post</a></div>
           </div>
+          {userProf.email === cookieEmail && userProf.role === 'admin' &&
+            <div className='flex flex-col gap-5 justify-start items-start rounded-2xl p-5 w-5/6'>
+              <button onClick={() => {navigate('/add/events')}}>Add an Event</button>
+              <button onClick={() => {navigate('/add/jobOpportunities')}}>Add a Job opportunity</button>
+              <button onClick={() => {navigate('/add/skilldev')}}>Add a Skill Development session</button>
+            </div>
+          }
         </div>
       </div>}
     </div>

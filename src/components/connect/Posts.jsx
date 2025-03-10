@@ -3,12 +3,14 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { FaCommentDots, FaCirclePlus } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
 
 function Posts() {
     const [posts, setPosts] = useState([]);
     const [currentUser, setCurrentUser] = useState('');
     const [commentText, setCommentText] = useState({});
     const [showComments, setShowComments] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         setCurrentUser(Cookies.get('email') || '');
@@ -121,7 +123,7 @@ function Posts() {
                     </div>
                 );
             })}
-            <div className="fixed text-4xl bottom-5 text-blue-500" style={{right: '22rem'}}><FaCirclePlus/></div>
+            <div className="fixed text-4xl bottom-5 text-blue-500" style={{right: '22rem'}} onClick={() => {navigate('/add/Post')}}><FaCirclePlus/></div>
         </div>
     );
 }
