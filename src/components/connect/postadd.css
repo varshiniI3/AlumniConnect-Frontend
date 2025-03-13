@@ -16,7 +16,7 @@
 }
 
 /* Title Styling */
-h4 {
+.post-form-container h4 {
   text-align: center;
   font-weight: bold;
   margin-bottom: 20px;
@@ -26,7 +26,7 @@ h4 {
 }
 
 /* Section Title Styling */
-.preview-section h4 {
+.post-form-container .preview-section h4 {
   text-align: center;
   font-weight: bold;
   margin-bottom: 15px;
@@ -34,7 +34,7 @@ h4 {
   font-size: 20px;
 }
 
-hr {
+.post-form-container hr {
   width: 75%;
   margin: 10px auto 20px;
   border: none;
@@ -42,14 +42,14 @@ hr {
   background: rgb(214, 115, 115);
   border-radius: 2px;
 }
-.row {
+.post-form-container .row {
   display: flex;
   margin-bottom: 30px;
   /* align-items: center; */
   gap: 10px; /* Space between label and input */
 }
 
-.row label {
+.post-form-container .row label {
   white-space: nowrap; /* Prevent label from wrapping */
   /* font-weight: bold; */
   font-weight: bold;
@@ -58,22 +58,8 @@ hr {
   font-size: 16px;
 }
 
-/* Form Group */
-/* .form-group {
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label {
-  font-weight: bold;
-  margin-bottom: 6px;
-  color: #333;
-  font-size: 16px;
-} */
-
 /* Input & Textarea Styling */
-input,
+.post-form-container input,
 textarea {
   width: 100%;
   padding: 12px;
@@ -85,20 +71,20 @@ textarea {
   background: white;
 }
 
-textarea {
+.post-form-container textarea {
   resize: none;
   min-height: 70px;
 }
 
 /* Focus Effect */
-input:focus, 
+.post-form-container input:focus, 
 textarea:focus {
   border: 1.5px solid black;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Submit Button */
-.apply-button {
+.post-form-container .apply-button {
   width: 80%;
   margin-left: 10%;
   background-color: #c00000;
@@ -112,13 +98,13 @@ textarea:focus {
   transition: background-color 0.3s, transform 0.2s ease-in-out;
 }
 
-.apply-button:hover {
+.post-form-container .apply-button:hover {
   background-color: #a00000;
   transform: scale(1.06);
 }
 
 /* Preview Section */
-.preview-section {
+.post-form-container .preview-section {
   margin-top: 25px;
   padding: 20px;
   background: #f9f9f9;
@@ -127,19 +113,19 @@ textarea:focus {
   transition: 0.3s ease-in-out;
 }
 
-.preview-section:hover {
+.post-form-container .preview-section:hover {
   box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Image Preview */
-.image-preview {
+.post-form-container .image-preview {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 15px;
 }
 
-.image-preview img {
+.post-form-container .image-preview img {
   max-width: 100%;
   max-height: 250px;
   border-radius: 10px;
@@ -147,12 +133,12 @@ textarea:focus {
   transition: transform 0.3s ease-in-out;
 }
 
-.image-preview img:hover {
+.post-form-container .image-preview img:hover {
   transform: scale(1.03);
 }
 
 /* Description Preview */
-.preview-description {
+.post-form-container .preview-description {
   font-size: 15px;
   color: #201515;
   padding: 8px 12px;
@@ -162,6 +148,6 @@ textarea:focus {
   transition: 0.3s ease-in-out;
 }
 
-.preview-description:hover {
+.post-form-container .preview-description:hover {
   background: #fcdede;
 }
