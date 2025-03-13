@@ -131,7 +131,7 @@ function Profile() {
             <h1 className='text-2xl mb-5 font-bold'>About</h1>
             <span className="badgeHolder gap-5">
               <form onSubmit={handleUserUpdateSubmit}>
-              <input className='border-none' type="text" value={userProf.about} disabled={!isAboutEdit} onChange={(e) => setUserProf(() => ({...userProf,regId: e.target.value}))}/>
+              <input className='border-none' type="text" value={userProf.about} disabled={!isAboutEdit} onChange={(e) => setUserProf(() => ({...userProf,about: e.target.value}))}/>
               </form>
             </span>
             {(userProf.email === cookieEmail || userProf.role === 'admin') && <button type='submit' className='absolute bottom-1 right-1 text-2xl mr-3' onClick={()=>setIsAboutEdit(!isAboutEdit)}>{isAboutEdit ? <FaSave /> : <FaEdit/> }</button>}
