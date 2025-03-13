@@ -4,13 +4,12 @@ import './profile.css'
 import Navbar from '../home/Navbar'
 import { FaEdit, FaSave  } from "react-icons/fa";
 import Bronze from '../../assets/ab.png'
-import Silver from '../../assets/as.png'
-import Gold from '../../assets/ag.png'
 import axios from 'axios'
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function Profile() {
   const [isEdit, setIsEdit] = useState(false)
+  const [isAboutEdit, setIsAboutEdit] = useState(false)
   const cookieEmail = Cookies.get('email')
   const email = useLocation().state?.mail || cookieEmail
   const [userProf, setUserProf] = useState()
@@ -131,15 +130,16 @@ function Profile() {
           <div className='w-5/6 rounded-2xl p-5'>
             <h1 className='text-2xl mb-5 font-bold'>About</h1>
             <span className="badgeHolder gap-5">
-              <p>{userProf.about}</p>
+              <form onSubmit={handleUserUpdateSubmit}>
+              <input className='border-none' type="text" value={userProf.about} disabled={!isAboutEdit} onChange={(e) => setUserProf(() => ({...userProf,regId: e.target.value}))}/>
+              </form>
             </span>
+            {(userProf.email === cookieEmail || userProf.role === 'admin') && <button type='submit' className='absolute bottom-1 right-1 text-2xl mr-3' onClick={()=>setIsAboutEdit(!isAboutEdit)}>{isAboutEdit ? <FaSave /> : <FaEdit/> }</button>}
           </div>
           <div className='w-5/6 rounded-2xl p-5'>
             <h1 className='text-2xl mb-5 font-bold'>Badges</h1>
             <span className="badgeHolder gap-5">
               <img src={Bronze} alt="bronzeBadge" data-cont = "Bronze" />
-              <img src={Silver} alt="silverBadge" />
-              <img src={Gold} alt="goldBadge" />
             </span>
           </div>
           <div className="p-5 w-5/6 rounded-2xl font-semibold text-xl">
